@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -15,7 +16,13 @@ export class Signup {
     password: new FormControl<string>('', [Validators.required])
   });
 
+  constructor(private readonly authService: AuthService) { }
+
   signUp(): void {
-    console.log(this.signupFormGroup.value);
+    if (this.signupFormGroup.invalid) return;
+
+    this.authService.signUp(this.signupFormGroup.value).subscribe({
+      next: ({ accessToken }: { readonly accessToken: string }) => console.log(accessToken)
+    });
   }
 }
