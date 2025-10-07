@@ -1,0 +1,25 @@
+<form [formGroup]="signupFormGroup" (submit)="signUp()">
+    <div class="form-field">
+        <label for="email">Email</label>
+        <input autocomplete="email" formControlName="email" id="email" type="email">
+    </div>
+
+    <div class="form-field">
+        <label for="firstName">Vorname</label>
+        <input autocomplete="given-name" formControlName="firstName" id="firstName" type="text">
+    </div>
+
+    <div class="form-field">
+        <label for="lastName">Nachname</label>
+        <input autocomplete="family-name" formControlName="lastName" id="lastName" type="text">
+    </div>
+
+    <div class="form-field">
+        <label for="password">Passwort</label>
+        <input autocomplete="new-password" formControlName="password" id="password" type="password">
+    </div>
+
+    <div class="form-actions">
+        <button [disabled]="signupFormGroup.invalid" type="submit">Anmelden</button>
+    </div>
+</form>

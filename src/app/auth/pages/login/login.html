@@ -1,0 +1,15 @@
+<form [formGroup]="loginFormGroup" (submit)="logIn()">
+    <div class="form-field">
+        <label for="email">Email</label>
+        <input autocomplete="email" formControlName="email" id="email" type="email">
+    </div>
+
+    <div class="form-field">
+        <label for="password">Passwort</label>
+        <input autocomplete="current-password" formControlName="password" id="password" type="password">
+    </div>
+
+    <div class="form-actions">
+        <button [disabled]="loginFormGroup.invalid" type="submit">Einloggen</button>
+    </div>
+</form>
