@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
 import { Login } from '../models/login.model';
-import { Signup } from '../pages/signup/signup';
+import { Signup } from '../models/signup.model';
 
 @Injectable({
   providedIn: 'root'

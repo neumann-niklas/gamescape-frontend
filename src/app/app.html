@@ -1,1 +1,8 @@
+@if (isAuthenticated()) {
+<button (click)="logOut()">Ausloggen</button>
+} @else {
+<button routerLink="/signup">Anmelden</button>
+<button routerLink="/login">Einloggen</button>
+}
+
 <router-outlet></router-outlet>

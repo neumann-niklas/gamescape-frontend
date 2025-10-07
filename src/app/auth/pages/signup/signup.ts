@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, effect } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
+import { AuthStoreService } from '../../services/auth-store.service';
 
 @Component({
   selector: 'app-signup',
@@ -16,13 +17,18 @@ export class Signup {
     password: new FormControl<string>('', [Validators.required])
   });
 
-  constructor(private readonly authService: AuthService) { }
+  constructor(
+    private readonly router: Router,
+    private readonly authStoreService: AuthStoreService
+  ) {
+    effect(() => {
+      if (authStoreService.isAuthenticated()) this.router.navigate(['/']);
+    });
+  }
 
   signUp(): void {
     if (this.signupFormGroup.invalid) return;
 
-    this.authService.signUp(this.signupFormGroup.value).subscribe({
-      next: ({ accessToken }: { readonly accessToken: string }) => console.log(accessToken)
-    });
+    this.authStoreService.signUp(this.signupFormGroup.value);
   }
 }
