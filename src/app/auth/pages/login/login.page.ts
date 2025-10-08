@@ -4,16 +4,14 @@ import { Router } from '@angular/router';
 import { AuthStoreService } from '../../services/auth-store.service';
 
 @Component({
-  selector: 'app-signup',
+  selector: 'app-login',
   imports: [ReactiveFormsModule],
-  templateUrl: './signup.html',
-  styleUrl: './signup.scss'
+  templateUrl: './login.page.html',
+  styleUrl: './login.page.scss'
 })
-export class Signup {
-  readonly signupFormGroup: FormGroup = new FormGroup({
+export class LoginPage {
+  readonly loginFormGroup: FormGroup = new FormGroup({
     email: new FormControl<string>('', [Validators.required, Validators.email]),
-    firstName: new FormControl<string>('', [Validators.required]),
-    lastName: new FormControl<string>('', [Validators.required]),
     password: new FormControl<string>('', [Validators.required])
   });
 
@@ -22,13 +20,13 @@ export class Signup {
     private readonly authStoreService: AuthStoreService
   ) {
     effect(() => {
-      if (authStoreService.isAuthenticated()) this.router.navigate(['/']);
+      if (this.authStoreService.isAuthenticated()) this.router.navigate(['/']);
     });
   }
 
-  signUp(): void {
-    if (this.signupFormGroup.invalid) return;
+  logIn(): void {
+    if (this.loginFormGroup.invalid) return;
 
-    this.authStoreService.signUp(this.signupFormGroup.value);
+    this.authStoreService.logIn(this.loginFormGroup.value);
   }
 }
