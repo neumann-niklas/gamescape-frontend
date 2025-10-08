@@ -20,14 +20,22 @@ export class UserPage {
   }
 
   updateEmail(): void {
-    this.authStoreService.updateEmail('james.doe@gamescape.de');
+    const email: string | null = window.prompt('Geben Sie Ihre neue Email ein:');
+
+    if (!email) return;
+
+    this.authStoreService.updateEmail(email);
   }
 
   updatePassword(): void {
-    this.authStoreService.updatePassword('newPassword');
+    const password: string | null = window.prompt('Geben Sie Ihr neues Passwort ein:');
+
+    if (!password) return;
+
+    this.authStoreService.updatePassword(password);
   }
 
   deleteUser(): void {
-    this.authStoreService.deleteUser();
+    window.confirm('Möchten Sie Ihren Benutzer wirklich löschen?') && this.authStoreService.deleteUser();
   }
 }

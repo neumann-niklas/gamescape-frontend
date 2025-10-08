@@ -14,6 +14,7 @@ export class LoginPage {
     email: new FormControl<string>('', [Validators.required, Validators.email]),
     password: new FormControl<string>('', [Validators.required])
   });
+  showPassword: boolean = false;
 
   constructor(
     private readonly router: Router,

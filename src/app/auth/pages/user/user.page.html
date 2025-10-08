@@ -1,8 +1,8 @@
 @if (user()) {
-<p>
-    <span>{{ user()?.email }}</span><br>
-    <span>{{ user()?.firstName }} {{ user()?.lastName }}</span>
-</p>
+<header>
+    <h2>{{ user()?.firstName }} {{ user()?.lastName }}</h2>
+    <h3>{{ user()?.email }}</h3>
+</header>
 
 <button (click)="updateUser()">Benutzer ändern</button>
 <button (click)="updateEmail()">Email ändern</button>

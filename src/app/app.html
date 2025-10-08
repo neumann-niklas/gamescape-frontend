@@ -1,9 +1,17 @@
-@if (isAuthenticated()) {
-<button routerLink="/user">Benutzer</button>
-<button (click)="logOut()">Ausloggen</button>
-} @else {
-<button routerLink="/signup">Anmelden</button>
-<button routerLink="/login">Einloggen</button>
-}
+<header>
+    <h1 routerLink="/">gamescape</h1>
+
+    <nav>
+        @if (isAuthenticated()) {
+        @if (user()) {
+        <h4 routerLink="/user">{{ user()?.firstName }} {{ user()?.lastName }}</h4>
+        }
+        <button (click)="logOut()">Ausloggen</button>
+        } @else {
+        <button routerLink="/signup">Anmelden</button>
+        <button routerLink="/login">Einloggen</button>
+        }
+    </nav>
+</header>
 
 <router-outlet></router-outlet>

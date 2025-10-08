@@ -1,15 +1,21 @@
 <form [formGroup]="loginFormGroup" (submit)="logIn()">
-    <div class="form-field">
-        <label for="email">Email</label>
-        <input autocomplete="email" formControlName="email" id="email" type="email">
-    </div>
+    <fieldset>
+        <div class="form-field">
+            <label for="email">Email</label>
+            <input autocomplete="email" formControlName="email" id="email" type="email">
+        </div>
 
-    <div class="form-field">
-        <label for="password">Passwort</label>
-        <input autocomplete="current-password" formControlName="password" id="password" type="password">
-    </div>
+        <div class="form-field">
+            <label for="password">Passwort</label>
+            <div class="password-field">
+                <input autocomplete="current-password" formControlName="password" id="password" [type]="showPassword ? 'text' : 'password'">
+                <button (click)="showPassword = !showPassword" type="button">{{ showPassword ? 'Ausblenden' : 'Einblenden' }}</button>
+            </div>
+        </div>
+    </fieldset>
 
     <div class="form-actions">
         <button [disabled]="loginFormGroup.invalid" type="submit">Einloggen</button>
+        <button type="reset">Zurücksetzen</button>
     </div>
 </form>
