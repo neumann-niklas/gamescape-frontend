@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
 import { Login } from '../models/login.model';
 import { Signup } from '../models/signup.model';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,5 +20,9 @@ export class AuthService {
 
   logIn(login: Login): Observable<{ readonly accessToken: string }> {
     return this.httpClient.post<{ readonly accessToken: string }>(this.authApiUrl + '/login', login);
+  }
+
+  getUser(): Observable<User> {
+    return this.httpClient.get<User>(this.authApiUrl);
   }
 }
