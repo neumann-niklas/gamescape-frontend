@@ -1,8 +1,5 @@
-@if (user()) {
-<h1>{{ user()?.email }}</h1>
-}
-
 @if (isAuthenticated()) {
+<button routerLink="/user">Benutzer</button>
 <button (click)="logOut()">Ausloggen</button>
 } @else {
 <button routerLink="/signup">Anmelden</button>

@@ -1,7 +1,7 @@
 import { computed, Injectable, Signal, signal, WritableSignal } from '@angular/core';
 import { Login } from '../models/login.model';
 import { Signup } from '../models/signup.model';
-import { User } from '../models/user.model';
+import { UpdateUser, User } from '../models/user.model';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -60,6 +60,34 @@ export class AuthStoreService {
   getUser(): void {
     this.authService.getUser().subscribe({
       next: (user: User) => this._user.set(user),
+      error: () => this._user.set(null)
+    });
+  }
+
+  updateUser(updateUser: UpdateUser): void {
+    this.authService.updateUser(updateUser).subscribe({
+      next: (user: User) => this._user.set(user),
+      error: () => this._user.set(null)
+    });
+  }
+
+  updateEmail(email: string): void {
+    this.authService.updateEmail(email).subscribe({
+      next: (user: User) => this._user.set(user),
+      error: () => this._user.set(null)
+    });
+  }
+
+  updatePassword(password: string): void {
+    this.authService.updatePassword(password).subscribe({
+      next: (user: User) => this._user.set(user),
+      error: () => this._user.set(null)
+    });
+  }
+
+  deleteUser(): void {
+    this.authService.deleteUser().subscribe({
+      next: () => this.logOut(),
       error: () => this._user.set(null)
     });
   }

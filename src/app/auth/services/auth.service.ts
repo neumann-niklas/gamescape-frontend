@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
 import { Login } from '../models/login.model';
 import { Signup } from '../models/signup.model';
-import { User } from '../models/user.model';
+import { UpdateUser, User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -24,5 +24,21 @@ export class AuthService {
 
   getUser(): Observable<User> {
     return this.httpClient.get<User>(this.authApiUrl);
+  }
+
+  updateUser(updateUser: UpdateUser): Observable<User> {
+    return this.httpClient.patch<User>(this.authApiUrl, updateUser);
+  }
+
+  updateEmail(email: string): Observable<User> {
+    return this.httpClient.patch<User>(this.authApiUrl + '/email', { email: email });
+  }
+
+  updatePassword(password: string): Observable<User> {
+    return this.httpClient.patch<User>(this.authApiUrl + '/password', { password: password });
+  }
+
+  deleteUser(): Observable<User> {
+    return this.httpClient.delete<User>(this.authApiUrl);
   }
 }
