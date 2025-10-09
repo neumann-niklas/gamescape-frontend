@@ -4,8 +4,8 @@
     <h3>{{ user()?.email }}</h3>
 </header>
 
-<button routerLink="/update-user">Benutzer ändern</button>
-<button disabled>Email ändern</button>
-<button disabled>Password ändern</button>
+<button routerLink="/update-user">Benutzer bearbeiten</button>
+<button routerLink="/update-email">Email ändern</button>
+<button routerLink="/update-password">Password ändern</button>
 <button (click)="onDeleteUser()">Löschen</button>
 }

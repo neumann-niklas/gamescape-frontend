@@ -31,11 +31,11 @@ export class AuthService {
   }
 
   updateEmail(email: string): Observable<User> {
-    return this.httpClient.patch<User>(this.authApiUrl + '/email', { email: email });
+    return this.httpClient.patch<User>(this.authApiUrl + '/email', email);
   }
 
   updatePassword(password: string): Observable<User> {
-    return this.httpClient.patch<User>(this.authApiUrl + '/password', { password: password });
+    return this.httpClient.patch<User>(this.authApiUrl + '/password', password);
   }
 
   deleteUser(): Observable<User> {

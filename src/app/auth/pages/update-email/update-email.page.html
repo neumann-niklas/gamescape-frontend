@@ -1,0 +1,14 @@
+<form [formGroup]="updateEmailFormGroup" (submit)="onUpdateEmail()">
+    <fieldset>
+        <div class="form-field">
+            <label for="email">Email</label>
+            <input autocomplete="email" formControlName="email" [placeholder]="user()?.email" id="email" type="email">
+        </div>
+    </fieldset>
+
+    <div class="form-actions">
+        <button [disabled]="updateEmailFormGroup.invalid" type="submit">Bestätigen</button>
+        <button type="reset">Zurücksetzen</button>
+        <button routerLink="/user" type="button">Abbrechen</button>
+    </div>
+</form>

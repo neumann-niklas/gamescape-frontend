@@ -1,12 +1,12 @@
 import { Component, Signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { UpdateUser, User } from '../../models/user.model';
 import { AuthStoreService } from '../../services/auth-store.service';
 
 @Component({
   selector: 'app-update-user.page',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterModule],
   templateUrl: './update-user.page.html',
   styleUrl: './update-user.page.scss'
 })
