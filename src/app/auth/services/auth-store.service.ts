@@ -1,4 +1,5 @@
 import { computed, Injectable, Signal, signal, WritableSignal } from '@angular/core';
+import { Observable, tap } from 'rxjs';
 import { Login } from '../models/login.model';
 import { Signup } from '../models/signup.model';
 import { UpdateUser, User } from '../models/user.model';
@@ -8,6 +9,8 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class AuthStoreService {
+  private readonly accessTokenKey: string = 'accessToken';
+
   private readonly _accessToken: WritableSignal<string | null> = signal<string | null>(null);
   private readonly _user: WritableSignal<User | null> = signal<User | null>(null);
 
@@ -19,78 +22,78 @@ export class AuthStoreService {
   }
 
   private loadAccessToken(): void {
-    const accessToken: string | null = localStorage.getItem('accessToken');
+    const accessToken: string | null = localStorage.getItem(this.accessTokenKey);
 
     if (!accessToken) return;
 
     this._accessToken.set(accessToken);
-    this.getUser();
+    this.getUser().subscribe();
   }
 
-  signUp(signup: Signup): void {
-    this.authService.signUp(signup).subscribe({
+  signUp(signup: Signup): Observable<{ accessToken: string }> {
+    return this.authService.signUp(signup).pipe(tap({
       next: ({ accessToken }: { accessToken: string }) => {
         this._accessToken.set(accessToken);
-        localStorage.setItem('accessToken', accessToken);
+        localStorage.setItem(this.accessTokenKey, accessToken);
       },
       error: () => {
         this._accessToken.set(null);
         this._user.set(null);
-        localStorage.removeItem('accessToken');
+        localStorage.removeItem(this.accessTokenKey);
       },
-      complete: () => this.getUser()
-    });
+      complete: () => this.getUser().subscribe()
+    }));
   }
 
-  logIn(login: Login): void {
-    this.authService.logIn(login).subscribe({
+  logIn(login: Login): Observable<{ accessToken: string }> {
+    return this.authService.logIn(login).pipe(tap({
       next: ({ accessToken }: { accessToken: string }) => {
         this._accessToken.set(accessToken);
-        localStorage.setItem('accessToken', accessToken);
+        localStorage.setItem(this.accessTokenKey, accessToken);
       },
       error: () => {
         this._accessToken.set(null);
         this._user.set(null);
-        localStorage.removeItem('accessToken');
+        localStorage.removeItem(this.accessTokenKey);
       },
-      complete: () => this.getUser()
-    });
+      complete: () => this.getUser().subscribe()
+    }));
   }
 
-  getUser(): void {
-    this.authService.getUser().subscribe({
+  getUser(): Observable<User> {
+    return this.authService.getUser().pipe(tap({
       next: (user: User) => this._user.set(user),
       error: () => this._user.set(null)
-    });
+    }));
   }
 
-  updateUser(updateUser: UpdateUser): void {
-    this.authService.updateUser(updateUser).subscribe({
+  updateUser(updateUser: UpdateUser): Observable<User> {
+    return this.authService.updateUser(updateUser).pipe(tap({
       next: (user: User) => this._user.set(user)
-    });
+    }));
   }
 
-  updateEmail(email: string): void {
-    this.authService.updateEmail(email).subscribe({
+  updateEmail(email: string): Observable<User> {
+    return this.authService.updateEmail(email).pipe(tap({
       next: (user: User) => this._user.set(user)
-    });
+    }));
   }
 
-  updatePassword(password: string): void {
-    this.authService.updatePassword(password).subscribe({
+  updatePassword(password: string): Observable<User> {
+    return this.authService.updatePassword(password).pipe(tap({
       next: (user: User) => this._user.set(user)
-    });
+    }));
   }
 
-  deleteUser(): void {
-    this.authService.deleteUser().subscribe({
+  deleteUser(): Observable<User> {
+    return this.authService.deleteUser().pipe(tap({
       next: () => this.logOut()
-    });
+    }));
   }
 
   logOut(): void {
     this._accessToken.set(null);
     this._user.set(null);
-    localStorage.removeItem('accessToken');
+    localStorage.removeItem(this.accessTokenKey);
   }
 }

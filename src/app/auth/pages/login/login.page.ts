@@ -1,4 +1,4 @@
-import { Component, effect } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthStoreService } from '../../services/auth-store.service';
@@ -19,15 +19,13 @@ export class LoginPage {
   constructor(
     private readonly router: Router,
     private readonly authStoreService: AuthStoreService
-  ) {
-    effect(() => {
-      if (this.authStoreService.isAuthenticated()) this.router.navigate(['/']);
-    });
-  }
+  ) { }
 
-  logIn(): void {
+  onLogIn(): void {
     if (this.loginFormGroup.invalid) return;
 
-    this.authStoreService.logIn(this.loginFormGroup.value);
+    this.authStoreService.logIn(this.loginFormGroup.value).subscribe({
+      complete: () => this.router.navigate(['/'])
+    });
   }
 }

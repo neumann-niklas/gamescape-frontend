@@ -1,5 +1,5 @@
 import { Component, Signal } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { User } from '../../models/user.model';
 import { AuthStoreService } from '../../services/auth-store.service';
 
@@ -12,31 +12,16 @@ import { AuthStoreService } from '../../services/auth-store.service';
 export class UserPage {
   readonly user: Signal<User | null>;
 
-  constructor(private readonly authStoreService: AuthStoreService) {
+  constructor(
+    private readonly router: Router,
+    private readonly authStoreService: AuthStoreService
+  ) {
     this.user = this.authStoreService.user;
   }
 
-  updateUser(): void {
-    this.authStoreService.updateUser({ firstName: 'James' });
-  }
-
-  updateEmail(): void {
-    const email: string | null = window.prompt('Geben Sie Ihre neue Email ein:');
-
-    if (!email) return;
-
-    this.authStoreService.updateEmail(email);
-  }
-
-  updatePassword(): void {
-    const password: string | null = window.prompt('Geben Sie Ihr neues Passwort ein:');
-
-    if (!password) return;
-
-    this.authStoreService.updatePassword(password);
-  }
-
-  deleteUser(): void {
-    window.confirm('Möchten Sie Ihren Benutzer wirklich löschen?') && this.authStoreService.deleteUser();
+  onDeleteUser(): void {
+    window.confirm('Möchten Sie Ihren Benutzer wirklich löschen?') && this.authStoreService.deleteUser().subscribe({
+      complete: () => this.router.navigate(['/'])
+    });
   }
 }
