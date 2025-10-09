@@ -1,10 +1,11 @@
 import { Component, Signal } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { User } from '../../models/user.model';
 import { AuthStoreService } from '../../services/auth-store.service';
 
 @Component({
   selector: 'app-user.page',
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './user.page.html',
   styleUrl: './user.page.scss'
 })

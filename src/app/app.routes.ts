@@ -11,6 +11,11 @@ export const routes: Routes = [
         loadComponent: () => import('./auth/pages/signup/signup.page').then(m => m.SignupPage)
     },
     {
+        path: 'update-user',
+        loadComponent: () => import('./auth/pages/update-user/update-user.page').then(m => m.UpdateUserPage),
+        canActivate: [authGuard]
+    },
+    {
         path: 'user',
         loadComponent: () => import('./auth/pages/user/user.page').then(m => m.UserPage),
         canActivate: [authGuard]

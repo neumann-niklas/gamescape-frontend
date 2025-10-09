@@ -1,0 +1,20 @@
+<form [formGroup]="updateUserFormGroup" (submit)="onUpdateUser()">
+    <fieldset>
+        <div class="name-fields">
+            <div class="form-field">
+                <label for="firstName">Vorname</label>
+                <input autocomplete="given-name" formControlName="firstName" id="firstName" type="text">
+            </div>
+
+            <div class="form-field">
+                <label for="lastName">Nachname</label>
+                <input autocomplete="family-name" formControlName="lastName" id="lastName" type="text">
+            </div>
+        </div>
+    </fieldset>
+
+    <div class="form-actions">
+        <button [disabled]="!isUpdateUserValid" type="submit">Bestätigen</button>
+        <button (click)="onResetForm()" type="button">Zurücksetzen</button>
+    </div>
+</form>

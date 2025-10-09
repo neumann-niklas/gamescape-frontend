@@ -66,29 +66,25 @@ export class AuthStoreService {
 
   updateUser(updateUser: UpdateUser): void {
     this.authService.updateUser(updateUser).subscribe({
-      next: (user: User) => this._user.set(user),
-      error: () => this._user.set(null)
+      next: (user: User) => this._user.set(user)
     });
   }
 
   updateEmail(email: string): void {
     this.authService.updateEmail(email).subscribe({
-      next: (user: User) => this._user.set(user),
-      error: () => this._user.set(null)
+      next: (user: User) => this._user.set(user)
     });
   }
 
   updatePassword(password: string): void {
     this.authService.updatePassword(password).subscribe({
-      next: (user: User) => this._user.set(user),
-      error: () => this._user.set(null)
+      next: (user: User) => this._user.set(user)
     });
   }
 
   deleteUser(): void {
     this.authService.deleteUser().subscribe({
-      next: () => this.logOut(),
-      error: () => this._user.set(null)
+      next: () => this.logOut()
     });
   }
 

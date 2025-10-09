@@ -1,0 +1,35 @@
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 1em;
+    width: fit-content;
+
+    fieldset {
+        border: none;
+        display: flex;
+        flex-direction: column;
+        gap: .5em;
+        margin: 0;
+        padding: 0;
+    }
+
+    .form-field {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .name-fields {
+        display: flex;
+        gap: .5em;
+    }
+
+    .form-actions {
+        display: flex;
+        gap: .5em;
+
+        button {
+            flex: 1;
+        }
+    }
+}
