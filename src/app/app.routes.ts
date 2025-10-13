@@ -29,5 +29,14 @@ export const routes: Routes = [
         path: 'user',
         loadComponent: () => import('./auth/pages/user/user.page').then(m => m.UserPage),
         canActivate: [authGuard]
+    },
+    {
+        path: 'games',
+        loadComponent: () => import('./games/pages/games/games.page').then(m => m.GamesPage)
+    },
+    {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'games'
     }
 ];

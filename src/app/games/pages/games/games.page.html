@@ -1,0 +1,14 @@
+@for (game of games(); track $index) {
+<p>
+    <span>{{ game.title }}</span>
+
+    @if (user()?.id === game.author.id) {
+    <button (click)="onUpdateGame(game.id)" type="button">Bearbeiten</button>
+    <button (click)="onDeleteGame(game.id)" type="button">Löschen</button>
+    }
+</p>
+}
+
+@if (isAuthenticated()) {
+<button (click)="onAddGame()" type="button">Spiel hinzufügen</button>
+}
