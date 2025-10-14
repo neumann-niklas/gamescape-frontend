@@ -1,4 +1,5 @@
 import { Component, OnInit, Signal } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { User } from '../../../auth/models/user.model';
 import { AuthStoreService } from '../../../auth/services/auth-store.service';
 import { Game } from '../../models/game.model';
@@ -6,7 +7,7 @@ import { GameStoreService } from '../../services/game-store.service';
 
 @Component({
   selector: 'app-games.page',
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './games.page.html',
   styleUrl: './games.page.scss'
 })
@@ -27,10 +28,6 @@ export class GamesPage implements OnInit {
 
   ngOnInit(): void {
     this.gameStoreService.getGames().subscribe();
-  }
-
-  onAddGame(): void {
-    this.gameStoreService.addGame({ title: 'Foo' }).subscribe();
   }
 
   onUpdateGame(id: string): void {

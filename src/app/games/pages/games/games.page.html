@@ -1,6 +1,7 @@
 @for (game of games(); track $index) {
 <p>
     <span>{{ game.title }}</span>
+    <span>{{ game.groupPhase }}</span>
 
     @if (user()?.id === game.author.id) {
     <button (click)="onUpdateGame(game.id)" type="button">Bearbeiten</button>
@@ -10,5 +11,5 @@
 }
 
 @if (isAuthenticated()) {
-<button (click)="onAddGame()" type="button">Spiel hinzufügen</button>
+<button routerLink="/add-game" type="button">Spiel hinzufügen</button>
 }

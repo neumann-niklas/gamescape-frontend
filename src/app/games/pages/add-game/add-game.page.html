@@ -1,0 +1,22 @@
+<form [formGroup]="addGameFormGroup" (submit)="onAddGame()">
+    <fieldset>
+        <div class="form-field">
+            <label for="title">Titel</label>
+            <input formControlName="title" id="title" type="text">
+        </div>
+
+        <div class="form-field">
+            <label for="groupPhase">Gruppenphase</label>
+            <select formControlName="groupPhase" id="groupPhase">
+                @for (groupPhase of groupPhases; track $index) {
+                <option [ngValue]="groupPhase.value">{{ groupPhase.key }}</option>
+                }
+            </select>
+        </div>
+    </fieldset>
+
+    <div class="form-actions">
+        <button [disabled]="addGameFormGroup.invalid" type="submit">Hinzufügen</button>
+        <button type="reset">Zurücksetzen</button>
+    </div>
+</form>
