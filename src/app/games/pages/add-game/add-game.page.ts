@@ -2,11 +2,11 @@ import { Component, Signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthStoreService } from '../../../auth/services/auth-store.service';
-import { GroupPhase } from '../../models/group-phase.enum';
+import { GroupPhase, GroupPhases } from '../../models/group-phase.enum';
 import { GameStoreService } from '../../services/game-store.service';
 
 @Component({
-  selector: 'app-add-game.page',
+  selector: 'app-add-game',
   imports: [ReactiveFormsModule],
   templateUrl: './add-game.page.html',
   styleUrl: './add-game.page.scss'
@@ -16,9 +16,7 @@ export class AddGamePage {
     title: new FormControl<string | null>(null, [Validators.required]),
     groupPhase: new FormControl<GroupPhase>(GroupPhase.Forming)
   });
-  readonly groupPhases = Object.entries(GroupPhase)
-    .filter(([key]: [string, string | GroupPhase]) => isNaN(Number(key)))
-    .map(([key, value]: [string, string | GroupPhase]) => ({ key, value }));
+  readonly groupPhases: { key: string, value: string | GroupPhase }[] = GroupPhases;
 
   readonly isAuthenticated: Signal<boolean>;
 

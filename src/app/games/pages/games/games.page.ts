@@ -6,7 +6,7 @@ import { Game } from '../../models/game.model';
 import { GameStoreService } from '../../services/game-store.service';
 
 @Component({
-  selector: 'app-games.page',
+  selector: 'app-games',
   imports: [RouterModule],
   templateUrl: './games.page.html',
   styleUrl: './games.page.scss'
@@ -28,10 +28,6 @@ export class GamesPage implements OnInit {
 
   ngOnInit(): void {
     this.gameStoreService.getGames().subscribe();
-  }
-
-  onUpdateGame(id: string): void {
-    this.gameStoreService.updateGame(id, { title: 'Bar' }).subscribe();
   }
 
   onDeleteGame(id: string): void {

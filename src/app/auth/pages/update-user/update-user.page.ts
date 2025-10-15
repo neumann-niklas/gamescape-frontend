@@ -5,7 +5,7 @@ import { UpdateUser, User } from '../../models/user.model';
 import { AuthStoreService } from '../../services/auth-store.service';
 
 @Component({
-  selector: 'app-update-user.page',
+  selector: 'app-update-user',
   imports: [ReactiveFormsModule, RouterModule],
   templateUrl: './update-user.page.html',
   styleUrl: './update-user.page.scss'

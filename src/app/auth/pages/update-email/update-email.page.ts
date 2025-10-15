@@ -5,7 +5,7 @@ import { User } from '../../models/user.model';
 import { AuthStoreService } from '../../services/auth-store.service';
 
 @Component({
-  selector: 'app-update-email.page',
+  selector: 'app-update-email',
   imports: [ReactiveFormsModule, RouterModule],
   templateUrl: './update-email.page.html',
   styleUrl: './update-email.page.scss'

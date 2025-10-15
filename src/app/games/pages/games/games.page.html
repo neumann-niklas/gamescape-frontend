@@ -1,15 +1,15 @@
-@for (game of games(); track $index) {
+@if (isAuthenticated()) {
+<button routerLink="/add-game" type="button">Spiel hinzufügen</button>
+}
+
+@for (game of games(); track game.id) {
 <p>
     <span>{{ game.title }}</span>
     <span>{{ game.groupPhase }}</span>
 
     @if (user()?.id === game.author.id) {
-    <button (click)="onUpdateGame(game.id)" type="button">Bearbeiten</button>
+    <button [routerLink]="[game.id, 'update-game']" type="button">Bearbeiten</button>
     <button (click)="onDeleteGame(game.id)" type="button">Löschen</button>
     }
 </p>
-}
-
-@if (isAuthenticated()) {
-<button routerLink="/add-game" type="button">Spiel hinzufügen</button>
 }

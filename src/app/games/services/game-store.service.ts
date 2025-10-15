@@ -21,15 +21,15 @@ export class GameStoreService {
     }));
   }
 
-  getGame(id: string): Observable<Game> {
-    return this.gameService.getGame(id).pipe(tap({
-      next: (game: Game) => this._game.set(game)
-    }));
-  }
-
   getGames(): Observable<Game[]> {
     return this.gameService.getGames().pipe(tap({
       next: (games: Game[]) => this._games.set(games)
+    }));
+  }
+
+  getGame(id: string): Observable<Game> {
+    return this.gameService.getGame(id).pipe(tap({
+      next: (game: Game) => this._game.set(game)
     }));
   }
 
@@ -41,7 +41,7 @@ export class GameStoreService {
 
   deleteGame(id: string): Observable<Game> {
     return this.gameService.deleteGame(id).pipe(tap({
-      next: () => this._games.set(this._games().filter((g: Game) => g.id !== id))
+      next: () => this._games.set(this._games().filter((game: Game) => game.id !== id))
     }));
   }
 }

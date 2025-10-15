@@ -16,12 +16,12 @@ export class GameService {
     return this.httpClient.post<Game>(this.gamesApiUrl, addGame);
   }
 
-  getGame(id: string): Observable<Game> {
-    return this.httpClient.get<Game>(`${this.gamesApiUrl}/${id}`);
-  }
-
   getGames(): Observable<Game[]> {
     return this.httpClient.get<Game[]>(this.gamesApiUrl);
+  }
+
+  getGame(id: string): Observable<Game> {
+    return this.httpClient.get<Game>(`${this.gamesApiUrl}/${id}`);
   }
 
   updateGame(id: string, updateGame: UpdateGame): Observable<Game> {

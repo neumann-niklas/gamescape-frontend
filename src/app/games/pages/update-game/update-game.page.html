@@ -1,8 +1,9 @@
-<form [formGroup]="addGameFormGroup" (submit)="onAddGame()">
+@if (game()) {
+<form [formGroup]="updateGameFormGroup" (submit)="onUpdateGame()">
     <fieldset>
         <div class="form-field">
             <label for="title">Titel</label>
-            <input formControlName="title" id="title" type="text">
+            <input formControlName="title" id="title" [placeholder]="game()?.title ?? ''" type="text">
         </div>
 
         <div class="form-field">
@@ -16,7 +17,8 @@
     </fieldset>
 
     <div class="form-actions">
-        <button type="reset">Zurücksetzen</button>
-        <button [disabled]="addGameFormGroup.invalid" type="submit">Hinzufügen</button>
+        <button (click)="onReset()" type="button">Zurücksetzen</button>
+        <button [disabled]="!isUpdateGameValid" type="submit">Bestätigen</button>
     </div>
 </form>
+}

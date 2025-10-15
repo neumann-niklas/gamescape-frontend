@@ -3,6 +3,11 @@ import { authGuard } from './auth/guards/auth-guard';
 
 export const routes: Routes = [
     {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'games'
+    },
+    {
         path: 'login',
         loadComponent: () => import('./auth/pages/login/login.page').then(m => m.LoginPage)
     },
@@ -36,12 +41,12 @@ export const routes: Routes = [
         canActivate: [authGuard]
     },
     {
-        path: 'games',
-        loadComponent: () => import('./games/pages/games/games.page').then(m => m.GamesPage)
+        path: 'games/:id/update-game',
+        loadComponent: () => import('./games/pages/update-game/update-game.page').then(m => m.UpdateGamePage),
+        canActivate: [authGuard]
     },
     {
-        path: '',
-        pathMatch: 'full',
-        redirectTo: 'games'
+        path: 'games',
+        loadComponent: () => import('./games/pages/games/games.page').then(m => m.GamesPage)
     }
 ];
