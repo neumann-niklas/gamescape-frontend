@@ -28,6 +28,10 @@ button {
 
     &:not(:disabled) {
         cursor: pointer;
+
+        &:hover {
+            background-color: hsl(0, 0%, 25%);
+        }
     }
 }
 
@@ -35,6 +39,10 @@ button[secondary] {
     background-color: white;
     border: 1px solid hsl(0, 0%, 80%);
     color: black;
+    
+    &:hover {
+        background-color: hsl(0, 0%, 92%);
+    }
 }
 
 input {

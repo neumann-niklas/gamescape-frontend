@@ -1,0 +1,30 @@
+table {
+    background-color: white;
+    border: 1px solid hsl(0, 0%, 80%);
+    border-radius: .5em;
+    border-spacing: 0;
+    width: 100%;
+
+    td,
+    th {
+        padding: 1em;
+    }
+
+    th {
+        text-align: start;
+        border-bottom: 1px solid hsl(0, 0%, 80%);
+    }
+
+    td {
+        border-bottom: 1px solid hsl(0, 0%, 80%);
+        border-right: 1px solid hsl(0, 0%, 80%);
+    }
+
+    tr:last-child td {
+        border-bottom: none;
+    }
+
+    td:last-child {
+        border-right: none;
+    }
+}

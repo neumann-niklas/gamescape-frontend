@@ -1,23 +1,23 @@
 <header>
+    <button (click)="toggleView()" secondary type="button">
+        @switch (viewType()) {
+        @case ('grid') {
+        <span>Liste</span>
+        } @case ('list') {
+        <span>Gitter</span>
+        }
+        }
+    </button>
+
     @if (isAuthenticated()) {
     <button routerLink="/add-game" secondary type="button">Spiel hinzufügen</button>
     }
 </header>
 
-<section>
-    @for (game of games(); track game.id) {
-    <div class="game-card">
-        <header>
-            <h3>{{ game.title }}</h3>
-            <span>{{ game.groupPhase | groupPhase }}</span>
-        </header>
-
-        @if (game.author.id === user()?.id) {
-        <section>
-            <button [routerLink]="[game.id, 'update-game']" secondary type="button">Bearbeiten</button>
-            <button (click)="onDeleteGame(game.id)" secondary type="button">Löschen</button>
-        </section>
-        }
-    </div>
-    }
-</section>
+@switch (viewType()) {
+@case ('grid') {
+<app-game-grid [games]="games()"></app-game-grid>
+} @case ('list') {
+<app-game-list [games]="games()"></app-game-list>
+}
+}
