@@ -3,11 +3,12 @@ import { RouterModule } from '@angular/router';
 import { User } from '../../../auth/models/user.model';
 import { AuthStoreService } from '../../../auth/services/auth-store.service';
 import { Game } from '../../models/game.model';
+import { GroupPhasePipe } from '../../pipes/group-phase.pipe';
 import { GameStoreService } from '../../services/game-store.service';
 
 @Component({
   selector: 'app-games',
-  imports: [RouterModule],
+  imports: [RouterModule, GroupPhasePipe],
   templateUrl: './games.page.html',
   styleUrl: './games.page.scss'
 })
