@@ -1,0 +1,17 @@
+<table>
+    <thead>
+        <tr>
+            <th>Titel</th>
+            <th>Gruppenphase</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @for (game of games(); track game.id) {
+        <tr>
+            <td>{{ game.title }}</td>
+            <td>{{ game.groupPhase | groupPhase }}</td>
+        </tr>
+        }
+    </tbody>
+</table>

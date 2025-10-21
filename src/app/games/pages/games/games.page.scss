@@ -4,38 +4,8 @@
     gap: 1em;
     padding: 1em;
 
-    section {
-        display: grid;
+    header {
+        display: flex;
         gap: .5em;
-        grid-template-columns: auto auto auto auto;
-
-        .game-card {
-            background-color: white;
-            border: 1px solid hsl(0, 0%, 80%);
-            border-radius: .5em;
-            display: flex;
-            flex-direction: column;
-            gap: .5em;
-            padding: 1em;
-
-            header {
-                display: flex;
-                justify-content: space-between;
-
-                h3 {
-                    margin: 0;
-                }
-            }
-
-            section {
-                display: flex;
-                gap: .5em;
-                justify-content: space-between;
-
-                button {
-                    flex: 1;
-                }
-            }
-        }
     }
 }
