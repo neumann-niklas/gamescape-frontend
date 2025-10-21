@@ -10,48 +10,35 @@ html {
 }
 
 body {
+    background-color: hsl(0, 0%, 96%);
     margin: 0;
 }
 
 button {
-    align-items: center;
-    background-color: inherit;
-    border: 1px solid hsl(0, 0%, 50%);
-    border-radius: .25em;
-    display: inline-flex;
-    justify-content: center;
+    background-color: black;
+    border: 1px solid hsl(0, 0%, 20%);
+    border-radius: .5em;
+    color: white;
     padding: .5em 1em;
 
-    &[secondary] {
-        border: 1px hidden;
-        font-weight: bold;
+    &:disabled {
+        background-color: hsl(0, 0%, 75%);
+        border: 1px solid hsl(0, 0%, 80%);
     }
 
     &:not(:disabled) {
         cursor: pointer;
-
-        &:hover {
-            background-color: hsl(0, 0%, 95%);
-        }
-
-        &:active {
-            background-color: hsl(0, 0%, 90%);
-        }
     }
+}
+
+button[secondary] {
+    background-color: white;
+    border: 1px solid hsl(0, 0%, 80%);
+    color: black;
 }
 
 input {
-    border: 1px solid hsl(0, 0%, 50%);
-    border-radius: .25em;
+    border: 1px solid hsl(0, 0%, 80%);
+    border-radius: .5em;
     padding: .5em;
-}
-
-select {
-    border: 1px solid hsl(0, 0%, 50%);
-    border-radius: .25em;
-    padding: .5em;
-
-    &:not(:disabled) {
-        cursor: pointer;
-    }
 }

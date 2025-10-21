@@ -1,4 +1,6 @@
 <form [formGroup]="loginFormGroup" (submit)="onLogIn()">
+    <h2>Anmeldung</h2>
+    
     <fieldset>
         <div class="form-field">
             <label for="email">Email</label>
@@ -7,15 +9,15 @@
 
         <div class="form-field">
             <label for="password">Passwort</label>
-            <div class="password-field">
+            <div id="password-field">
                 <input autocomplete="current-password" formControlName="password" id="password" [type]="showPassword ? 'text' : 'password'">
-                <button (click)="showPassword = !showPassword" type="button">{{ showPassword ? 'Ausblenden' : 'Einblenden' }}</button>
+                <button (click)="showPassword = !showPassword" secondary type="button">{{ showPassword ? 'Ausblenden' : 'Einblenden' }}</button>
             </div>
         </div>
     </fieldset>
 
     <div class="form-actions">
+        <button secondary type="reset">Zurücksetzen</button>
         <button [disabled]="loginFormGroup.invalid" type="submit">Einloggen</button>
-        <button type="reset">Zurücksetzen</button>
     </div>
 </form>

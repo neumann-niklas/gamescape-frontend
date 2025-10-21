@@ -1,21 +1,27 @@
-header {
-    align-items: center;
+:host {
     display: flex;
-    justify-content: space-between;
-    padding: 1em;
+    flex-direction: column;
+    height: 100%;
 
-    h1,
-    h4 {
-        cursor: pointer;
-        margin: 0;
+    header {
+        background-color: white;
+        border-bottom: 1px solid hsl(0, 0%, 80%);
+        display: flex;
+        justify-content: space-between;
+        padding: 1em;
+
+        h1 {
+            cursor: pointer;
+            margin: 0;
+        }
+
+        nav {
+            display: flex;
+            gap: .5em;
+        }
     }
 
-    nav {
-        display: flex;
-        gap: .5em;
-
-        button {
-            cursor: pointer;
-        }
+    main {
+        flex-grow: 1;
     }
 }

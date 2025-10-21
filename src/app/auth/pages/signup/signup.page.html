@@ -1,11 +1,13 @@
 <form [formGroup]="signupFormGroup" (submit)="onSignUp()">
+    <h2>Registrierung</h2>
+
     <fieldset>
         <div class="form-field">
             <label for="email">Email</label>
             <input autocomplete="email" formControlName="email" id="email" type="email">
         </div>
 
-        <div class="name-fields">
+        <div id="name-fields">
             <div class="form-field">
                 <label for="firstName">Vorname</label>
                 <input autocomplete="given-name" formControlName="firstName" id="firstName" type="text">
@@ -19,15 +21,15 @@
 
         <div class="form-field">
             <label for="password">Passwort</label>
-            <div class="password-field">
+            <div id="password-field">
                 <input autocomplete="new-password" formControlName="password" id="password" [type]="showPassword ? 'text' : 'password'">
-                <button (click)="showPassword = !showPassword" type="button">{{ showPassword ? 'Ausblenden' : 'Einblenden' }}</button>
+                <button (click)="showPassword = !showPassword" secondary type="button">{{ showPassword ? 'Ausblenden' : 'Einblenden' }}</button>
             </div>
         </div>
     </fieldset>
 
     <div class="form-actions">
+        <button secondary type="reset">Zurücksetzen</button>
         <button [disabled]="signupFormGroup.invalid" type="submit">Anmelden</button>
-        <button type="reset">Zurücksetzen</button>
     </div>
 </form>

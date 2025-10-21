@@ -4,14 +4,16 @@
     <nav>
         @if (isAuthenticated()) {
         @if (user()) {
-        <button secondary routerLink="/user">{{ user()?.firstName }} {{ user()?.lastName }}</button>
+        <button routerLink="/user" secondary>{{ user()?.firstName }} {{ user()?.lastName }}</button>
         }
         <button (click)="logOut()">Ausloggen</button>
         } @else {
-        <button routerLink="/signup">Anmelden</button>
-        <button routerLink="/login">Einloggen</button>
+        <button routerLink="/signup" secondary>Registrieren</button>
+        <button routerLink="/login">Anmelden</button>
         }
     </nav>
 </header>
 
-<router-outlet></router-outlet>
+<main>
+    <router-outlet></router-outlet>
+</main>
