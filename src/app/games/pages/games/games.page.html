@@ -1,15 +1,16 @@
-@if (isAuthenticated()) {
-<button routerLink="/add-game" type="button">Spiel hinzufügen</button>
-}
-
-@for (game of games(); track game.id) {
-<p>
-    <span>{{ game.title }}</span>
-    <span>{{ game.groupPhase }}</span>
-
-    @if (user()?.id === game.author.id) {
-    <button [routerLink]="[game.id, 'update-game']" type="button">Bearbeiten</button>
-    <button (click)="onDeleteGame(game.id)" type="button">Löschen</button>
+<header>
+    @if (isAuthenticated()) {
+    <button routerLink="/add-game" secondary type="button">Spiel hinzufügen</button>
     }
-</p>
-}
+</header>
+
+<section>
+    @for (game of games(); track game.id) {
+    <div class="game-card">
+        <header>
+            <h3>{{ game.title }}</h3>
+            <span>{{ game.groupPhase }}</span>
+        </header>
+    </div>
+    }
+</section>
