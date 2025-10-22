@@ -4,8 +4,8 @@
     grid-template-columns: auto auto auto auto;
 
     .game-card {
-        background-color: white;
-        border: 1px solid hsl(0, 0%, 80%);
+        background-color: var(--background-color-secondary);
+        border: 1px solid var(--border-color-secondary);
         border-radius: .5em;
         display: flex;
         flex-direction: column;

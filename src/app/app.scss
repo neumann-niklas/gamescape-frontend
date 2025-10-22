@@ -4,8 +4,8 @@
     height: 100%;
 
     header {
-        background-color: white;
-        border-bottom: 1px solid hsl(0, 0%, 80%);
+        background-color: var(--background-color-secondary);
+        border-bottom: 1px solid var(--border-color-secondary);
         display: flex;
         justify-content: space-between;
         padding: 1em;

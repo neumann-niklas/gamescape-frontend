@@ -1,5 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka&display=swap');
 
+:root,
+.light {
+    --background-color-primary: hsl(0, 0%, 96%);
+    --background-color-secondary: hsl(0, 0%, 100%);
+    --border-color-primary: hsl(0, 0%, 20%);
+    --border-color-secondary: hsl(0, 0%, 80%);
+    --button-color-primary: hsl(0, 0%, 0%);
+    --button-color-secondary: hsl(0, 0%, 100%);
+    --button-hover-color-primary: hsl(0, 0%, 25%);
+    --button-hover-color-secondary: hsl(0, 0%, 92%);
+    --color-primary: hsl(0, 0%, 0%);
+    --color-secondary: hsl(0, 0%, 100%);
+}
+
+.dark {
+    --background-color-primary: hsl(0, 0%, 0%);
+    --background-color-secondary: hsl(0, 0%, 4%);
+    --border-color-primary: hsl(0, 0%, 80%);
+    --border-color-secondary: hsl(0, 0%, 20%);
+    --button-color-primary: hsl(0, 0%, 100%);
+    --button-color-secondary: hsl(0, 0%, 0%);
+    --button-hover-color-primary: hsl(0, 0%, 75%);
+    --button-hover-color-secondary: hsl(0, 0%, 8%);
+    --color-primary: hsl(0, 0%, 100%);
+    --color-secondary: hsl(0, 0%, 0%);
+}
+
 body,
 html {
     height: 100%;
@@ -10,43 +37,44 @@ html {
 }
 
 body {
-    background-color: hsl(0, 0%, 96%);
+    background-color: var(--background-color-primary);
+    color: var(--color-primary);
     margin: 0;
 }
 
 button {
-    background-color: black;
-    border: 1px solid hsl(0, 0%, 20%);
+    background-color: var(--button-color-primary);
+    border: 1px solid var(--border-color-primary);
     border-radius: .5em;
-    color: white;
+    color: var(--color-secondary);
     padding: .5em 1em;
 
     &:disabled {
-        background-color: hsl(0, 0%, 75%);
-        border: 1px solid hsl(0, 0%, 80%);
+        background-color: var(--border-color-secondary);
+        border: 1px solid var(--border-color-secondary);
     }
 
     &:not(:disabled) {
         cursor: pointer;
 
         &:hover {
-            background-color: hsl(0, 0%, 25%);
+            background-color: var(--button-hover-color-primary);
         }
     }
 }
 
 button[secondary] {
-    background-color: white;
-    border: 1px solid hsl(0, 0%, 80%);
-    color: black;
-    
+    background-color: var(--button-color-secondary);
+    border: 1px solid var(--border-color-secondary);
+    color: var(--color-primary);
+
     &:hover {
-        background-color: hsl(0, 0%, 92%);
+        background-color: var(--button-hover-color-secondary);
     }
 }
 
 input {
-    border: 1px solid hsl(0, 0%, 80%);
+    border: 1px solid var(--border-color-secondary);
     border-radius: .5em;
     padding: .5em;
 }

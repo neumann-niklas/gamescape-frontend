@@ -3,7 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthStoreService } from '../../../auth/services/auth-store.service';
 import { Game, UpdateGame } from '../../models/game.model';
-import { GroupPhase, GroupPhases } from '../../models/group-phase.enum';
+import { GroupPhase, groupPhases } from '../../models/group-phase.enum';
 import { GameStoreService } from '../../services/game-store.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class UpdateGamePage implements OnInit {
     title: new FormControl<string | null>(null),
     groupPhase: new FormControl<GroupPhase>(GroupPhase.Forming)
   });
-  readonly groupPhases: { key: string, value: string | GroupPhase }[] = GroupPhases;
+  readonly groupPhases: { key: string, value: string | GroupPhase }[] = groupPhases;
 
   readonly id: string | null;
   readonly isAuthenticated: Signal<boolean>;

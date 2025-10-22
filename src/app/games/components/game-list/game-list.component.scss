@@ -1,6 +1,6 @@
 table {
-    background-color: white;
-    border: 1px solid hsl(0, 0%, 80%);
+    background-color: var(--background-color-secondary);
+    border: 1px solid var(--border-color-secondary);
     border-radius: .5em;
     border-spacing: 0;
     width: 100%;
@@ -12,12 +12,12 @@ table {
 
     th {
         text-align: start;
-        border-bottom: 1px solid hsl(0, 0%, 80%);
+        border-bottom: 1px solid var(--border-color-secondary);
     }
 
     td {
-        border-bottom: 1px solid hsl(0, 0%, 80%);
-        border-right: 1px solid hsl(0, 0%, 80%);
+        border-bottom: 1px solid var(--border-color-secondary);
+        border-right: 1px solid var(--border-color-secondary);
     }
 
     tr:last-child td {
