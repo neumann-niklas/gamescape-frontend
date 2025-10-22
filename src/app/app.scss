@@ -7,6 +7,7 @@
         background-color: var(--background-color-secondary);
         border-bottom: 1px solid var(--border-color-secondary);
         display: flex;
+        gap: 1em;
         justify-content: space-between;
         padding: 1em;
 
@@ -15,9 +16,14 @@
             margin: 0;
         }
 
-        nav {
+        aside {
             display: flex;
-            gap: .5em;
+            gap: 1em;
+
+            nav {
+                display: flex;
+                gap: .5em;
+            }
         }
     }
 

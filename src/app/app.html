@@ -14,7 +14,9 @@
             }
         </nav>
 
-        <button (click)="onToggleTheme()" secondary type="button">Theme</button>
+        <button (click)="onToggleTheme()" secondary type="button">
+            <span>{{ theme() === 'light' ? 'Dunkel' : 'Hell' }}</span>
+        </button>
     </aside>
 </header>
 
