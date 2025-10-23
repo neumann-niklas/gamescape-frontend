@@ -5,7 +5,7 @@
         <nav>
             @if (isAuthenticated()) {
             @if (user()) {
-            <button routerLink="/user" secondary type="button">{{ user()?.firstName }} {{ user()?.lastName }}</button>
+            <button routerLink="/user" tertiary type="button">{{ user()?.firstName }} {{ user()?.lastName }}</button>
             }
             <button (click)="logOut()">Ausloggen</button>
             } @else {
@@ -14,7 +14,7 @@
             }
         </nav>
 
-        <button (click)="onToggleTheme()" secondary type="button">
+        <button (click)="onToggleTheme()" tertiary type="button">
             @switch (theme()) {
             @case ('light') {
             <span class="material-symbols-rounded">dark_mode</span>

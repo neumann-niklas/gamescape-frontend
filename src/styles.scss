@@ -57,6 +57,8 @@ button {
     color: var(--color-secondary);
     display: inline-flex;
     gap: .25em;
+    height: fit-content;
+    justify-content: center;
     padding: .5em 1em;
 
     &:disabled {
@@ -76,6 +78,16 @@ button {
 button[secondary] {
     background-color: var(--background-color-secondary);
     border: 1px solid var(--border-color-secondary);
+    color: var(--color-primary);
+
+    &:hover {
+        background-color: var(--button-hover-color-secondary);
+    }
+}
+
+button[tertiary] {
+    background-color: hsla(0, 0%, 100%, 0%);
+    border: 1px solid hsla(0, 0%, 100%, 0%);
     color: var(--color-primary);
 
     &:hover {

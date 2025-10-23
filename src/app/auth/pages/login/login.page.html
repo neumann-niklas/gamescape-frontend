@@ -1,6 +1,6 @@
 <form [formGroup]="loginFormGroup" (submit)="onLogIn()">
     <h2>Anmeldung</h2>
-    
+
     <fieldset>
         <div class="form-field">
             <label for="email">Email</label>
@@ -11,7 +11,13 @@
             <label for="password">Passwort</label>
             <div id="password-field">
                 <input autocomplete="current-password" formControlName="password" id="password" [type]="showPassword ? 'text' : 'password'">
-                <button (click)="showPassword = !showPassword" secondary type="button">{{ showPassword ? 'Ausblenden' : 'Einblenden' }}</button>
+                <button (click)="showPassword = !showPassword" tertiary type="button">
+                    @if (showPassword) {
+                    <span class="material-symbols-rounded">visibility_off</span>
+                    } @else {
+                    <span class="material-symbols-rounded">visibility</span>
+                    }
+                </button>
             </div>
         </div>
     </fieldset>
