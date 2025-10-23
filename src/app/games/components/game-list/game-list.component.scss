@@ -1,30 +1,30 @@
 table {
-    background-color: var(--background-color-secondary);
-    border: 1px solid var(--border-color-secondary);
-    border-radius: .5em;
-    border-spacing: 0;
+    border-spacing: 0 .5em;
     width: 100%;
+
+    tr {
+        background-color: var(--background-color-secondary);
+    }
 
     td,
     th {
+        border: 1px solid var(--border-color-secondary);
+        border-left-width: 0;
         padding: 1em;
+
+        &:first-child {
+            border-left-width: 1px;
+            border-radius: .5em 0 0 .5em;
+        }
+
+        &:last-child {
+            border-radius: 0 .5em .5em 0;
+            border-right-width: 1px;
+        }
     }
 
     th {
+        border-right-width: 0;
         text-align: start;
-        border-bottom: 1px solid var(--border-color-secondary);
-    }
-
-    td {
-        border-bottom: 1px solid var(--border-color-secondary);
-        border-right: 1px solid var(--border-color-secondary);
-    }
-
-    tr:last-child td {
-        border-bottom: none;
-    }
-
-    td:last-child {
-        border-right: none;
     }
 }
