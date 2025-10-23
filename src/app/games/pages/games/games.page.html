@@ -2,8 +2,10 @@
     <button (click)="toggleView()" secondary type="button">
         @switch (viewType()) {
         @case ('grid') {
+        <span class="material-symbols-rounded">list</span>
         <span>Liste</span>
         } @case ('list') {
+        <span class="material-symbols-rounded">grid_view</span>
         <span>Gitter</span>
         }
         }

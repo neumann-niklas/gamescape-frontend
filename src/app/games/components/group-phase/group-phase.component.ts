@@ -14,4 +14,19 @@ export class GroupPhaseComponent {
   get groupPhaseClass(): string {
     return GroupPhase[this.groupPhase()].toLowerCase();
   }
+
+  getGroupPhaseSymbol(groupPhase: GroupPhase): string {
+    switch (groupPhase) {
+      case GroupPhase.Forming:
+        return 'psychiatry';
+      case GroupPhase.Storming:
+        return 'bolt';
+      case GroupPhase.Norming:
+        return 'explore';
+      case GroupPhase.Performing:
+        return 'rocket';
+      case GroupPhase.Adjourning:
+        return 'celebration';
+    }
+  }
 }

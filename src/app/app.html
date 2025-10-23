@@ -15,7 +15,15 @@
         </nav>
 
         <button (click)="onToggleTheme()" secondary type="button">
-            <span>{{ theme() === 'light' ? 'Dunkel' : 'Hell' }}</span>
+            @switch (theme()) {
+            @case ('light') {
+            <span class="material-symbols-rounded">dark_mode</span>
+            <span>Dunkel</span>
+            } @case ('dark') {
+            <span class="material-symbols-rounded">light_mode</span>
+            <span>Hell</span>
+            }
+            }
         </button>
     </aside>
 </header>
