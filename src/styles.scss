@@ -12,6 +12,9 @@
     --button-hover-color-secondary: hsl(0, 0%, 92%);
     --color-primary: hsl(0, 0%, 0%);
     --color-secondary: hsl(0, 0%, 100%);
+    --tag-background-color-lightness: 95%;
+    --tag-border-color-lightness: 90%;
+    --tag-color-lightness: 25%;
 }
 
 .dark {
@@ -25,6 +28,9 @@
     --button-hover-color-secondary: hsl(0, 0%, 8%);
     --color-primary: hsl(0, 0%, 100%);
     --color-secondary: hsl(0, 0%, 0%);
+    --tag-background-color-lightness: 10%;
+    --tag-border-color-lightness: 20%;
+    --tag-color-lightness: 75%;
 }
 
 body,

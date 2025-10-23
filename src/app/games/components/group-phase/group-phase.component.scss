@@ -1,0 +1,23 @@
+$group-phases: (
+    forming: 300,
+    storming: 0,
+    norming: 40,
+    performing: 120,
+    adjourning: 180
+);
+
+@each $name, $hue in $group-phases {
+    .#{$name} {
+        background-color: hsl($hue, 100%, var(--tag-background-color-lightness));
+        border-color: hsl($hue, 100%, var(--tag-border-color-lightness));
+        color: hsl($hue, 100%, var(--tag-color-lightness));
+    }
+}
+
+span {
+    background-color: hsl(0, 0%, var(--tag-background-color-lightness));
+    border: 1px solid hsl(0, 0%, var(--tag-border-color-lightness));
+    border-radius: 1em;
+    color: hsl(0, 0%, var(--tag-color-lightness));
+    padding: 0.25em 0.5em;
+}
