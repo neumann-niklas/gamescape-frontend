@@ -28,6 +28,14 @@ table {
         text-align: start;
     }
 
+    tbody tr {
+        cursor: pointer;
+
+        &:hover {
+            background-color: var(--button-hover-color-secondary);
+        }
+    }
+
     .game-categories {
         display: flex;
         gap: .5em;

@@ -41,7 +41,10 @@ export class GameStoreService {
 
   deleteGame(id: string): Observable<Game> {
     return this.gameService.deleteGame(id).pipe(tap({
-      next: () => this._games.set(this._games().filter((game: Game) => game.id !== id))
+      next: () => {
+        this._games.set(this._games().filter((game: Game) => game.id !== id));
+        this._game.set(null);
+      }
     }));
   }
 }

@@ -1,0 +1,27 @@
+@if (game(); as game) {
+<div id="game-container">
+    <header>
+        <h2>{{ game.title }}</h2>
+
+        <app-group-phase [groupPhase]="game.groupPhase"></app-group-phase>
+    </header>
+
+    <section id="game-info">
+        <div id="game-categories">
+            @for (category of game.categories; track category.id) {
+            <app-category [category]="category"></app-category>
+            }
+        </div>
+
+        <span>{{ game.updateDate | date:'d/M/yy'}}</span>
+    </section>
+
+    @if (isAuthenticated()) {}
+    <section id="game-actions">
+        @if (user()?.id === game.author.id) {
+        <button routerLink="update-game" secondary>Bearbeiten</button>
+        <button (click)="onDeleteGame()" secondary>Löschen</button>
+        }
+    </section>
+</div>
+}

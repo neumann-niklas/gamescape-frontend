@@ -13,7 +13,7 @@
 
     <tbody>
         @for (game of games(); track game.id) {
-        <tr>
+        <tr [routerLink]="game.id">
             <td>{{ game.title }}</td>
 
             <td>

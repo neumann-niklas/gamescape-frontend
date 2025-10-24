@@ -1,5 +1,5 @@
 @for (game of games(); track game.id) {
-<div class="game-card">
+<div class="game-card" [routerLink]="game.id">
     <header>
         <h3>{{ game.title }}</h3>
 

@@ -7,10 +7,15 @@
         background-color: var(--background-color-secondary);
         border: 1px solid var(--border-color-secondary);
         border-radius: .5em;
+        cursor: pointer;
         display: flex;
         flex-direction: column;
         gap: .5em;
         padding: 1em;
+
+        &:hover {
+            background-color: var(--button-hover-color-secondary);
+        }
 
         header {
             display: flex;
