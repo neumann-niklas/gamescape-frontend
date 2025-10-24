@@ -1,4 +1,5 @@
 import { User } from "../../auth/models/user.model";
+import { Category } from "../../categories/models/category.model";
 import { GroupPhase } from "./group-phase.enum";
 
 export interface Game {
@@ -8,11 +9,13 @@ export interface Game {
     readonly createDate: Date;
     readonly updateDate: Date;
     readonly author: User;
+    readonly categories: Category[];
 }
 
 export interface AddGame {
     readonly title: string;
     readonly groupPhase?: GroupPhase;
+    readonly categories: Category[];
 }
 
 export interface UpdateGame extends Partial<AddGame> { }

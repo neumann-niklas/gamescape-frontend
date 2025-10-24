@@ -4,5 +4,14 @@
         <h3>{{ game.title }}</h3>
         <app-group-phase [groupPhase]="game.groupPhase"></app-group-phase>
     </header>
+
+    <section>
+        <div>
+            @for (category of game.categories; track category.id) {
+            <span>{{ category.name }}</span>
+            }
+        </div>
+        <div>{{ game.updateDate | date:'d/M/yy' }}</div>
+    </section>
 </div>
 }

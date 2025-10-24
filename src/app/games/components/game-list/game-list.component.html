@@ -3,6 +3,8 @@
         <tr>
             <th>Titel</th>
             <th>Gruppenphase</th>
+            <th>Kategorien</th>
+            <th>Datum</th>
         </tr>
     </thead>
 
@@ -13,6 +15,12 @@
             <td>
                 <app-group-phase [groupPhase]="game.groupPhase"></app-group-phase>
             </td>
+            <td>
+                @for (category of game.categories; track category.id) {
+                <span>{{ category.name }}</span>
+                }
+            </td>
+            <td>{{ game.updateDate | date:'d/M/y' }}</td>
         </tr>
         }
     </tbody>
