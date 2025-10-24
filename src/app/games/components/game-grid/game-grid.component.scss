@@ -20,5 +20,20 @@
                 margin: 0;
             }
         }
+
+        section {
+            display: flex;
+            flex-direction: column;
+            gap: .5em;
+
+            .game-categories {
+                display: flex;
+                gap: .5em;
+            }
+
+            .game-date {
+                text-align: right;
+            }
+        }
     }
 }

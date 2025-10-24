@@ -27,4 +27,9 @@ table {
         border-right-width: 0;
         text-align: start;
     }
+
+    .game-categories {
+        display: flex;
+        gap: .5em;
+    }
 }
