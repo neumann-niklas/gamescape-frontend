@@ -1,9 +1,9 @@
-@if (game()) {
+@if (game(); as game) {
 <form [formGroup]="updateGameFormGroup" (submit)="onUpdateGame()">
     <fieldset>
         <div class="form-field">
             <label for="title">Titel</label>
-            <input formControlName="title" id="title" [placeholder]="game()?.title ?? ''" type="text">
+            <input formControlName="title" id="title" [placeholder]="game.title" type="text">
         </div>
 
         <div class="form-field">
@@ -14,10 +14,19 @@
                 }
             </select>
         </div>
+
+        <div class="form-field">
+            <label for="categories">Kategorien</label>
+            <select formControlName="categories" id="categories" multiple>
+                @for (category of categories(); track category.id) {
+                <option [ngValue]="category">{{ category.name }}</option>
+                }
+            </select>
+        </div>
     </fieldset>
 
     <div class="form-actions">
-        <button (click)="onReset()" type="button">Zurücksetzen</button>
+        <button (click)="onReset()" secondary type="button">Zurücksetzen</button>
         <button [disabled]="!isUpdateGameValid" type="submit">Bestätigen</button>
     </div>
 </form>
