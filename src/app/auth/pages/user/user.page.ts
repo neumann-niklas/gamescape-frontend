@@ -1,5 +1,6 @@
 import { Component, Signal } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import { Role } from '../../models/role.enum';
 import { User } from '../../models/user.model';
 import { AuthStoreService } from '../../services/auth-store.service';
 
@@ -23,5 +24,9 @@ export class UserPage {
     window.confirm('Möchten Sie Ihren Benutzer wirklich löschen?') && this.authStoreService.deleteUser().subscribe({
       complete: () => this.router.navigate(['/'])
     });
+  }
+
+  getRole(role: Role): string {
+    return Role[role];
   }
 }

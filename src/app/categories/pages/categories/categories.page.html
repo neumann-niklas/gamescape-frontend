@@ -1,0 +1,57 @@
+@if (categories(); as categories) {
+<span class="category-table">
+    <span class="table-row">
+        <span>ID</span>
+
+        <span>Name</span>
+
+        <span>Aktionen</span>
+    </span>
+
+    <form class="form-row" [formGroup]="addCategoryFormGroup">
+        <span></span>
+
+        <span>
+            <input formControlName="name" type="text">
+        </span>
+
+        <span>
+            <button (click)="addCategoryFormGroup.reset()" secondary type="button">Zurücksetzen</button>
+
+            <button (click)="onAddCategory()" [disabled]="addCategoryFormGroup.invalid" type="button">Hinzufügen</button>
+        </span>
+    </form>
+
+    @for (c of categories; track c.id) {
+    @if (category()?.id === c.id) {
+    <form class="form-row" [formGroup]="updateCategoryFormGroup">
+        <span>{{ c.id }}</span>
+
+        <span>
+            <input formControlName="name" [placeholder]="c.name" type="text">
+        </span>
+
+        <span>
+            <button (click)="onClearCategory()" secondary>Abbrechen</button>
+
+            <button (click)="updateCategoryFormGroup.reset()" secondary>Zurücksetzen</button>
+
+            <button (click)="onUpdateCategory()" [disabled]="updateCategoryFormGroup.invalid" type="button">Bestätigen</button>
+        </span>
+    </form>
+    } @else {
+    <span class="table-row">
+        <span>{{ c.id }}</span>
+
+        <span>{{ c.name }}</span>
+
+        <span>
+            <button (click)="onGetCategory(c.id)" secondary type="button">Bearbeiten</button>
+
+            <button (click)="onDeleteCategory(c)" secondary type="button">Löschen</button>
+        </span>
+    </span>
+    }
+    }
+</span>
+}

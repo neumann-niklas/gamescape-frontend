@@ -1,5 +1,6 @@
 import { Component, Signal } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { Role } from './auth/models/role.enum';
 import { User } from './auth/models/user.model';
 import { AuthStoreService } from './auth/services/auth-store.service';
 import { Theme } from './models/theme.enum';
@@ -7,7 +8,7 @@ import { ThemeStoreService } from './services/theme-store.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterModule],
+  imports: [RouterLink, RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
@@ -27,7 +28,11 @@ export class App {
     this.theme = this.themeService.theme;
   }
 
-  logOut(): void {
+  get isAdmin(): boolean {
+    return this.user()?.role === Role.Admin;
+  }
+
+  onLogOut(): void {
     this.authStoreService.logOut();
   }
 

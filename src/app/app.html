@@ -2,12 +2,18 @@
     <h1 routerLink="/">gamescape</h1>
 
     <aside>
+        @if (isAdmin) {
+        <nav>
+            <button routerLink="categories" secondary type="button">Kategorien</button>
+        </nav>
+        }
+
         <nav>
             @if (isAuthenticated()) {
-            @if (user()) {
-            <button routerLink="/user" tertiary type="button">{{ user()?.firstName }} {{ user()?.lastName }}</button>
+            @if (user(); as user) {
+            <button routerLink="/user" tertiary type="button">{{ user.firstName }} {{ user.lastName }}</button>
             }
-            <button (click)="logOut()">Ausloggen</button>
+            <button (click)="onLogOut()">Ausloggen</button>
             } @else {
             <button routerLink="/signup" secondary type="button">Registrieren</button>
             <button routerLink="/login" type="button">Anmelden</button>

@@ -1,11 +1,14 @@
-@if (user()) {
+@if (user(); as user) {
 <header>
-    <h2>{{ user()?.firstName }} {{ user()?.lastName }}</h2>
-    <h3>{{ user()?.email }}</h3>
+    <p>Name: {{ user.firstName }} {{ user.lastName }}</p>
+    <p>Email: {{ user.email }}</p>
+    <p>Rolle: {{ getRole(user.role) }}</p>
 </header>
 
-<button routerLink="/update-user">Benutzer bearbeiten</button>
-<button routerLink="/update-email">Email ändern</button>
-<button routerLink="/update-password">Password ändern</button>
-<button (click)="onDeleteUser()">Löschen</button>
+<section>
+    <button routerLink="/update-user">Benutzer bearbeiten</button>
+    <button routerLink="/update-email">Email ändern</button>
+    <button routerLink="/update-password">Password ändern</button>
+    <button (click)="onDeleteUser()">Löschen</button>
+</section>
 }

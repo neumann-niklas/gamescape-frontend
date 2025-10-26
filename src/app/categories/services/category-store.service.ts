@@ -44,4 +44,8 @@ export class CategoryStoreService {
       next: () => this._categories.set(this._categories().filter((category: Category) => category.id !== id))
     }));
   }
+
+  clearCategory(): void {
+    this._category.set(null);
+  }
 }
