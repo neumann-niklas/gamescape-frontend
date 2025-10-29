@@ -20,9 +20,9 @@
 
     <aside>
         @if (user(); as user) {} @else {
-        <button secondary type="button">Registrieren</button>
+        <button (click)="onOpenSignupDialog()" secondary type="button">Registrieren</button>
 
-        <button type="button">Anmelden</button>
+        <button (click)="onOpenLoginDialog()" type="button">Anmelden</button>
         }
 
         @if (theme(); as theme) {
@@ -42,3 +42,5 @@
 <main>
     <router-outlet></router-outlet>
 </main>
+
+<app-dialog></app-dialog>
