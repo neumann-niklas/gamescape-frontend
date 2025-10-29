@@ -4,13 +4,13 @@ import { Auth, Login, Signup } from '../models/auth.model';
 import { UpdateUser, User } from '../models/user.model';
 import { AuthService } from './auth.service';
 
+export const ACCESS_TOKEN_KEY: string = 'accessToken';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthStoreService {
   private readonly authService: AuthService = inject<AuthService>(AuthService);
-
-  private readonly ACCESS_TOKEN_KEY: string = 'accessToken';
 
   private readonly _auth: WritableSignal<Auth | null> = signal<Auth | null>(null);
   private readonly _user: WritableSignal<User | null> = signal<User | null>(null);
@@ -19,7 +19,7 @@ export class AuthStoreService {
   readonly user: Signal<User | null> = computed<User | null>(() => this._user());
 
   loadAuth(): void {
-    const accessToken: string | null = localStorage.getItem(this.ACCESS_TOKEN_KEY);
+    const accessToken: string | null = localStorage.getItem(ACCESS_TOKEN_KEY);
 
     if (!accessToken) return;
 
@@ -30,7 +30,7 @@ export class AuthStoreService {
   signUp(signup: Signup): Observable<Auth> {
     return this.authService.signUp(signup).pipe(tap({
       next: (auth: Auth) => {
-        localStorage.setItem(this.ACCESS_TOKEN_KEY, auth.accessToken);
+        localStorage.setItem(ACCESS_TOKEN_KEY, auth.accessToken);
         this._auth.set(auth);
       },
       complete: () => this.getUser().subscribe()
@@ -40,7 +40,7 @@ export class AuthStoreService {
   logIn(login: Login): Observable<Auth> {
     return this.authService.logIn(login).pipe(tap({
       next: (auth: Auth) => {
-        localStorage.setItem(this.ACCESS_TOKEN_KEY, auth.accessToken);
+        localStorage.setItem(ACCESS_TOKEN_KEY, auth.accessToken);
         this._auth.set(auth);
       },
       complete: () => this.getUser().subscribe()
@@ -78,7 +78,7 @@ export class AuthStoreService {
   }
 
   logOut(): void {
-    localStorage.removeItem(this.ACCESS_TOKEN_KEY);
+    localStorage.removeItem(ACCESS_TOKEN_KEY);
     this._auth.set(null);
     this._user.set(null);
   }
