@@ -1,42 +1,28 @@
-import { Component, Signal } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
-import { Role } from './auth/models/role.enum';
-import { User } from './auth/models/user.model';
-import { AuthStoreService } from './auth/services/auth-store.service';
-import { Theme } from './models/theme.enum';
-import { ThemeStoreService } from './services/theme-store.service';
+import { Component, inject, Signal } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { Theme } from './core/models/theme.model';
+import { User } from './core/models/user.model';
+import { AuthStoreService } from './core/services/auth-store.service';
+import { ThemeStoreService } from './core/services/theme-store.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterLink, RouterOutlet],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
 export class App {
-  readonly isAuthenticated: Signal<boolean>;
-  readonly user: Signal<User | null>;
+  private readonly authStoreService: AuthStoreService = inject<AuthStoreService>(AuthStoreService);
+  private readonly themeStoreService: ThemeStoreService = inject<ThemeStoreService>(ThemeStoreService);
 
-  readonly theme: Signal<Theme>;
-
-  constructor(
-    private readonly authStoreService: AuthStoreService,
-    private readonly themeService: ThemeStoreService
-  ) {
-    this.isAuthenticated = this.authStoreService.isAuthenticated;
-    this.user = this.authStoreService.user;
-
-    this.theme = this.themeService.theme;
-  }
-
-  get isAdmin(): boolean {
-    return this.user()?.role === Role.Admin;
-  }
+  readonly user: Signal<User | null> = this.authStoreService.user;
+  readonly theme: Signal<Theme> = this.themeStoreService.theme;
 
   onLogOut(): void {
     this.authStoreService.logOut();
   }
 
   onToggleTheme(): void {
-    this.themeService.toggleTheme();
+    this.themeStoreService.toggleTheme();
   }
 }

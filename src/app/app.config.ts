@@ -1,14 +1,19 @@
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
+import { provideHttpClient } from '@angular/common/http';
+import { ApplicationConfig, inject, provideAppInitializer, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
-import { authInterceptor } from './auth/interceptors/auth-interceptor';
+import { AuthStoreService } from './core/services/auth-store.service';
+import { ThemeStoreService } from './core/services/theme-store.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideHttpClient(withInterceptors([authInterceptor])),
+    provideHttpClient(),
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
-    provideRouter(routes)
+    provideRouter(routes),
+    provideAppInitializer(() => {
+      inject<AuthStoreService>(AuthStoreService).loadAuth();
+      inject<ThemeStoreService>(ThemeStoreService).loadTheme();
+    })
   ]
 };

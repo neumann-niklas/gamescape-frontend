@@ -1,36 +1,41 @@
 <header>
-    <h1 routerLink="/">gamescape</h1>
+    <h2 class="title">gamescape</h2>
+
+    <nav>
+        <a class="tab">
+            <span class="material-symbols-rounded">toys_and_games</span>
+            <span>Spiele</span>
+        </a>
+
+        <a class="tab">
+            <span class="material-symbols-rounded">groups</span>
+            <span>Gruppenphase</span>
+        </a>
+
+        <a class="tab">
+            <span class="material-symbols-rounded">category</span>
+            <span>Kategorien</span>
+        </a>
+    </nav>
 
     <aside>
-        @if (isAdmin) {
-        <nav>
-            <button routerLink="categories" secondary type="button">Kategorien</button>
-        </nav>
+        @if (user(); as user) {} @else {
+        <button secondary type="button">Registrieren</button>
+
+        <button type="button">Anmelden</button>
         }
 
-        <nav>
-            @if (isAuthenticated()) {
-            @if (user(); as user) {
-            <button routerLink="/user" tertiary type="button">{{ user.firstName }} {{ user.lastName }}</button>
-            }
-            <button (click)="onLogOut()">Ausloggen</button>
-            } @else {
-            <button routerLink="/signup" secondary type="button">Registrieren</button>
-            <button routerLink="/login" type="button">Anmelden</button>
-            }
-        </nav>
-
-        <button (click)="onToggleTheme()" tertiary type="button">
-            @switch (theme()) {
-            @case ('light') {
-            <span class="material-symbols-rounded">dark_mode</span>
-            <span>Dunkel</span>
-            } @case ('dark') {
+        @if (theme(); as theme) {
+        <button (click)="onToggleTheme()" tertiary>
+            @switch (theme) {
+            @case ('LIGHT') {
             <span class="material-symbols-rounded">light_mode</span>
-            <span>Hell</span>
+            } @case ('DARK') {
+            <span class="material-symbols-rounded">dark_mode</span>
             }
             }
         </button>
+        }
     </aside>
 </header>
 

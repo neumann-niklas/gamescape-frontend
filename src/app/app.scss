@@ -1,38 +1,40 @@
-:host {
+header {
+    align-items: center;
     display: flex;
-    flex-direction: column;
-    height: 100%;
+    gap: 1rem;
 
-    header {
+    .title {
+        padding-inline: 1rem;
+        margin: 0;
+    }
+
+    .tab {
         align-items: center;
-        background-color: var(--background-color-secondary);
-        border-bottom: 1px solid var(--border-color-secondary);
-        display: flex;
-        gap: 1em;
-        justify-content: space-between;
-        padding: 1em;
+        display: inline-flex;
+        gap: .5rem;
+        padding: 1rem;
+        opacity: 50%;
 
-        h1 {
-            cursor: pointer;
-            margin: 0;
+        &.active {
+            opacity: 100%;
         }
 
-        aside {
-            display: flex;
-            gap: 1em;
+        &:not(.active) {
+            cursor: pointer;
 
-            nav {
-                display: flex;
-                gap: .5em;
+            &:hover {
+                opacity: 100%;
             }
         }
     }
 
-    main {
+    nav {
         flex-grow: 1;
     }
 
-    .material-symbols-rounded {
-        font-size: 1.5em;
+    aside {
+        display: flex;
+        gap: .5rem;
+        padding-inline: .5rem;
     }
 }
