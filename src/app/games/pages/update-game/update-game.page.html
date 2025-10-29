@@ -16,8 +16,8 @@
         </div>
 
         <div class="form-field">
-            <label for="categories">Kategorien</label>
-            <select formControlName="categories" id="categories" multiple>
+            <label for="category">Kategorie</label>
+            <select formControlName="category" id="category">
                 @for (category of categories(); track category.id) {
                 <option [ngValue]="category">{{ category.name }}</option>
                 }

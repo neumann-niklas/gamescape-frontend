@@ -19,7 +19,7 @@ export class UpdateGamePage implements OnInit {
   readonly updateGameFormGroup: FormGroup = new FormGroup({
     title: new FormControl<string | null>(null),
     groupPhase: new FormControl<GroupPhase>(GroupPhase.Forming),
-    categories: new FormControl<Category[]>([])
+    category: new FormControl<Category | null>(null)
   });
   readonly groupPhases: { key: string, value: string | GroupPhase }[] = groupPhases;
 
@@ -52,7 +52,7 @@ export class UpdateGamePage implements OnInit {
     }).subscribe({
       next: ({ categories, game }: { categories: Category[], game: Game }) => this.updateGameFormGroup.patchValue({
         groupPhase: game.groupPhase,
-        categories: this.mapCategories(game.categories, categories)
+        category: game.category
       })
     });
   }
@@ -80,9 +80,7 @@ export class UpdateGamePage implements OnInit {
     const updateGame: any = {};
 
     for (const [key, value] of Object.entries(this.cleanFormValues(this.updateGameFormGroup.value))) {
-      if (key === 'categories') {
-        if (!this.areCategoriesEqual(value as Category[], game.categories)) updateGame.categories = value;
-      } else if (game[key as keyof Game] !== value) updateGame[key] = value;
+      if (game[key as keyof Game] !== value) updateGame[key] = value;
     }
 
     return updateGame as UpdateGame;
@@ -95,7 +93,7 @@ export class UpdateGamePage implements OnInit {
   onReset(): void {
     this.updateGameFormGroup.reset({
       groupPhase: this.game()?.groupPhase,
-      categories: this.mapCategories(this.game()?.categories ?? [], this.categories())
+      categories: this.game()?.category
     });
   }
 

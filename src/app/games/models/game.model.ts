@@ -9,13 +9,13 @@ export interface Game {
     readonly createDate: Date;
     readonly updateDate: Date;
     readonly author: User;
-    readonly categories: Category[];
+    readonly category: Category;
 }
 
 export interface AddGame {
     readonly title: string;
     readonly groupPhase?: GroupPhase;
-    readonly categories: Category[];
+    readonly category: Category;
 }
 
 export interface UpdateGame extends Partial<AddGame> { }

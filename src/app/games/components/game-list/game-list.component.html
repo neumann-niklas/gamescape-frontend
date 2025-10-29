@@ -22,9 +22,7 @@
 
             <td>
                 <span class="game-categories">
-                    @for (category of game.categories; track category.id) {
-                    <app-category [category]="category"></app-category>
-                    }
+                    <app-category [category]="game.category"></app-category>
                 </span>
             </td>
 

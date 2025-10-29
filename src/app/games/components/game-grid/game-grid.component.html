@@ -8,9 +8,7 @@
 
     <section>
         <div class="game-categories">
-            @for (category of game.categories; track category.id) {
-            <app-category [category]="category"></app-category>
-            }
+            <app-category [category]="game.category"></app-category>
         </div>
 
         <span class="game-date">{{ game.updateDate | date:'d/M/yy' }}</span>
