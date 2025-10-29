@@ -4,6 +4,7 @@
 :root,
 .light {
     --background-color: white;
+    --border-color: hsl(0, 0%, 80%);
     --button-background-color-primary: black;
     --button-background-color-secondary: hsl(0, 0%, 80%);
     --button-color-primary: white;
@@ -13,6 +14,7 @@
 
 .dark {
     --background-color: black;
+    --border-color: hsl(0, 0%, 20%);
     --button-background-color-primary: white;
     --button-background-color-secondary: hsl(0, 0%, 20%);
     --button-color-primary: black;
@@ -46,6 +48,7 @@ button {
     border-radius: 4px;
     color: var(--button-color-primary);
     display: flex;
+    justify-content: center;
     padding: .5rem 1rem;
 
     &:disabled {
@@ -65,4 +68,12 @@ button[secondary] {
 button[tertiary] {
     background-color: var(--background-color);
     color: var(--color);
+}
+
+input {
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--color);
+    padding: .5rem;
 }

@@ -19,7 +19,11 @@
     </nav>
 
     <aside>
-        @if (user(); as user) {} @else {
+        @if (user(); as user) {
+        <a class="tab" (click)="onLogOut()">
+            <span>{{ user.firstName }} {{ user.lastName }}</span>
+        </a>
+        } @else {
         <button (click)="onOpenSignupDialog()" secondary type="button">Registrieren</button>
 
         <button (click)="onOpenLoginDialog()" type="button">Anmelden</button>
