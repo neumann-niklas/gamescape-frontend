@@ -10,14 +10,16 @@ header {
 
     .tab {
         align-items: center;
-        display: inline-flex;
+        border: solid var(--background-color);
         color: var(--color);
+        display: inline-flex;
         gap: .5rem;
         padding: 1rem;
         text-decoration: none;
         opacity: 50%;
 
         &.active {
+            border-bottom-color: var(--color);
             opacity: 100%;
         }
 

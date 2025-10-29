@@ -13,8 +13,11 @@ export const appConfig: ApplicationConfig = {
     provideZonelessChangeDetection(),
     provideRouter(routes),
     provideAppInitializer(() => {
-      inject<AuthStoreService>(AuthStoreService).loadAuth();
-      inject<ThemeStoreService>(ThemeStoreService).loadTheme();
+      const authStoreService: AuthStoreService = inject<AuthStoreService>(AuthStoreService);
+      const themeStoreService: ThemeStoreService = inject<ThemeStoreService>(ThemeStoreService);
+
+      themeStoreService.loadTheme();
+      return authStoreService.loadAuth();
     })
   ]
 };

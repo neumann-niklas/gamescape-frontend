@@ -1,5 +1,5 @@
 import { computed, inject, Injectable, Signal, signal, WritableSignal } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { firstValueFrom, Observable, tap } from 'rxjs';
 import { Auth, Login, Signup } from '../models/auth.model';
 import { UpdateUser, User } from '../models/user.model';
 import { AuthService } from './auth.service';
@@ -18,13 +18,18 @@ export class AuthStoreService {
   readonly auth: Signal<Auth | null> = computed<Auth | null>(() => this._auth());
   readonly user: Signal<User | null> = computed<User | null>(() => this._user());
 
-  loadAuth(): void {
+  async loadAuth(): Promise<void> {
     const accessToken: string | null = localStorage.getItem(ACCESS_TOKEN_KEY);
 
     if (!accessToken) return;
 
     this._auth.set({ accessToken: accessToken });
-    this.getUser().subscribe();
+
+    try {
+      await firstValueFrom(this.getUser())
+    } catch {
+      this.logOut();
+    }
   }
 
   signUp(signup: Signup): Observable<Auth> {
