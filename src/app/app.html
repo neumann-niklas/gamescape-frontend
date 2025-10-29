@@ -20,7 +20,7 @@
 
     <aside>
         @if (user(); as user) {
-        <a class="tab" (click)="onLogOut()">
+        <a class="tab" routerLink="user" routerLinkActive="active">
             <span>{{ user.firstName }} {{ user.lastName }}</span>
         </a>
         } @else {

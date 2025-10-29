@@ -11,8 +11,10 @@ header {
     .tab {
         align-items: center;
         display: inline-flex;
+        color: var(--color);
         gap: .5rem;
         padding: 1rem;
+        text-decoration: none;
         opacity: 50%;
 
         &.active {

@@ -1,5 +1,5 @@
 import { Component, inject, Signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLinkActive, RouterLinkWithHref, RouterOutlet } from '@angular/router';
 import { DialogComponent } from './core/components/dialog.component/dialog.component';
 import { Theme } from './core/models/theme.model';
 import { User } from './core/models/user.model';
@@ -11,7 +11,7 @@ import { SignupComponent } from './features/auth/components/signup/signup.compon
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, DialogComponent],
+  imports: [RouterLinkActive, RouterLinkWithHref, RouterOutlet, DialogComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
@@ -22,10 +22,6 @@ export class App {
 
   readonly user: Signal<User | null> = this.authStoreService.user;
   readonly theme: Signal<Theme> = this.themeStoreService.theme;
-
-  onLogOut(): void {
-    this.authStoreService.logOut();
-  }
 
   onOpenLoginDialog(): void {
     this.dialogStoreService.open(LoginComponent);
