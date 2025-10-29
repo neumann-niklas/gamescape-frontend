@@ -20,15 +20,12 @@ header {
 
         &.active {
             border-bottom-color: var(--color);
+            cursor: default;
             opacity: 100%;
         }
 
-        &:not(.active) {
-            cursor: pointer;
-
-            &:hover {
-                opacity: 100%;
-            }
+        &:hover {
+            opacity: 100%;
         }
     }
 
