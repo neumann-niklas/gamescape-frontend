@@ -24,11 +24,11 @@ export class App {
   readonly theme: Signal<Theme> = this.themeStoreService.theme;
 
   onOpenLoginDialog(): void {
-    this.dialogStoreService.open(LoginComponent);
+    this.dialogStoreService.open(LoginComponent, 'Anmeldung');
   }
 
   onOpenSignupDialog(): void {
-    this.dialogStoreService.open(SignupComponent);
+    this.dialogStoreService.open(SignupComponent, 'Registrierung');
   }
 
   onToggleTheme(): void {

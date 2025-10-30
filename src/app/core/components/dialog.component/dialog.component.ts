@@ -11,6 +11,7 @@ export class DialogComponent {
   private readonly dialogStoreService: DialogStoreService = inject<DialogStoreService>(DialogStoreService);
 
   readonly component: Signal<Type<any> | null> = this.dialogStoreService.component;
+  readonly title: Signal<string> = this.dialogStoreService.title;
   readonly content: Signal<ViewContainerRef | undefined> = viewChild<undefined, ViewContainerRef>('content', { read: ViewContainerRef });
 
   constructor() {
@@ -18,7 +19,10 @@ export class DialogComponent {
       const content: ViewContainerRef | undefined = this.content();
       const component: Type<any> | null = this.dialogStoreService.component();
 
-      if (content && component) content.createComponent(component);
+      if (!content || !component) return;
+
+      content.clear();
+      content.createComponent(component);
     });
   }
 

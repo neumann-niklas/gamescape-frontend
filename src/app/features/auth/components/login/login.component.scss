@@ -1,50 +1,37 @@
-:host {
-    align-items: center;
+form {
     display: flex;
     flex-direction: column;
-    height: 100%;
-    justify-content: center;
+    gap: 1rem;
 
-    form {
+    fieldset {
+        border: none;
         display: flex;
         flex-direction: column;
-        gap: 1em;
-        padding: 1em;
+        gap: .5rem;
+        margin: 0;
+        padding: 0;
 
-        h2 {
-            margin: 0;
-        }
-
-        fieldset {
-            border: none;
+        .form-field {
             display: flex;
             flex-direction: column;
-            gap: .5em;
-            margin: 0;
-            padding: 0;
-
-            .form-field {
-                display: flex;
-                flex-direction: column;
-            }
-
-            #password-field {
-                display: flex;
-                gap: .5em;
-
-                input {
-                    flex-grow: 1;
-                }
-            }
         }
 
-        .form-actions {
+        #password-field {
             display: flex;
-            gap: .5em;
+            gap: .5rem;
 
-            button {
-                flex: 1;
+            input {
+                flex-grow: 1;
             }
+        }
+    }
+
+    .form-actions {
+        display: flex;
+        gap: .5rem;
+
+        button {
+            flex: 1;
         }
     }
 }
