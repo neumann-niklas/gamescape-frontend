@@ -1,1 +1,67 @@
-<p>categories.page works!</p>
+@if (categories(); as categories) {
+<div class="category-table">
+    <div class="table-row">
+        <span class="table-cell">Name</span>
+
+        @if (user(); as user) { @if (user.role >= 1) {
+        <span class="table-cell">Aktionen</span>
+        }}
+    </div>
+
+    @if (user(); as user) { @if (user.role >= 1) {
+    <form class="form-row" [formGroup]="addCategoryFormGroup" (submit)="onAddCategory()">
+        <span class="table-cell">
+            <input formControlName="name" type="text">
+        </span>
+
+        <span class="table-cell">
+            <button (click)="addCategoryFormGroup.reset()" secondary type="reset">
+                <span class="material-symbols-rounded">undo</span>
+            </button>
+
+            <button [disabled]="addCategoryFormGroup.invalid" type="submit">
+                <span class="material-symbols-rounded">add</span>
+            </button>
+        </span>
+    </form>
+    }}
+
+    @for (c of categories; track c.id) { @if (category()?.id === c.id) {
+    <form class="form-row" [formGroup]="updateCategoryFormGroup" (submit)="onUpdateCategory(c.id)">
+        <span class="table-cell">
+            <input formControlName="name" [placeholder]="c.name" type="text">
+        </span>
+
+        <span class="table-cell">
+            <button (click)="onClearCategory()" tertiary type="button">
+                <span class="material-symbols-rounded">cancel</span>
+            </button>
+
+            <button (click)="updateCategoryFormGroup.reset()" secondary type="reset">
+                <span class="material-symbols-rounded">undo</span>
+            </button>
+
+            <button [disabled]="updateCategoryFormGroup.invalid" type="submit">
+                <span class="material-symbols-rounded">check</span>
+            </button>
+        </span>
+    </form>
+    } @else {
+    <div class="table-row">
+        <span class="table-cell">{{ c.name }}</span>
+
+        @if (user(); as user) { @if (user.role >= 1) {
+        <span class="table-cell">
+            <button (click)="onGetCategory(c.id)" tertiary type="button">
+                <span class="material-symbols-rounded">edit</span>
+            </button>
+
+            <button (click)="onDeleteCategory(c.id)" tertiary type="button">
+                <span class="material-symbols-rounded">delete</span>
+            </button>
+        </span>
+        }}
+    </div>
+    }}
+</div>
+}

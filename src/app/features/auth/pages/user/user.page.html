@@ -1,1 +1,14 @@
+@if (user(); as user) {
+<dl>
+    <dt>Email</dt>
+    <dd>{{ user.email }}</dd>
+
+    <dt>Name</dt>
+    <dd>{{ user.firstName }} {{ user.lastName }}</dd>
+
+    <dt>Rolle</dt>
+    <dd>{{ user.role | role }}</dd>
+</dl>
+}
+
 <button (click)="onLogOut()" type="button">Abmelden</button>

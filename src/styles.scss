@@ -10,6 +10,7 @@
     --button-color-primary: white;
     --button-color-secondary: black;
     --color: black;
+    --input-background-color: hsl(0, 0%, 95%);
 }
 
 .dark {
@@ -20,6 +21,7 @@
     --button-color-primary: black;
     --button-color-secondary: white;
     --color: white;
+    --input-background-color: hsl(0, 0%, 10%);
 }
 
 .material-symbols-rounded {
@@ -71,7 +73,7 @@ button[tertiary] {
 }
 
 input {
-    background-color: var(--background-color);
+    background-color: var(--input-background-color);
     border: 1px solid var(--border-color);
     border-radius: 4px;
     color: var(--color);

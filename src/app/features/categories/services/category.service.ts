@@ -10,7 +10,7 @@ import { AddCategory, Category, UpdateCategory } from '../models/category.model'
 export class CategoryService {
   private readonly httpClient: HttpClient = inject<HttpClient>(HttpClient);
 
-  private readonly categoriesApiUrl: string = environment.apiUrl + 'categories';
+  private readonly categoriesApiUrl: string = environment.apiUrl + '/categories';
 
   addCategory(addCategory: AddCategory): Observable<Category> {
     return this.httpClient.post<Category>(this.categoriesApiUrl, addCategory);

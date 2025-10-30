@@ -17,7 +17,7 @@ export class CategoryStoreService {
 
   addCategory(addCategory: AddCategory): Observable<Category> {
     return this.categoryService.addCategory(addCategory).pipe(tap({
-      next: (category: Category) => this._category.set(category)
+      next: (category: Category) => this._categories.set([...this._categories(), category])
     }));
   }
 
@@ -35,7 +35,8 @@ export class CategoryStoreService {
 
   updateCategory(id: string, updateCategory: UpdateCategory): Observable<Category> {
     return this.categoryService.updateCategory(id, updateCategory).pipe(tap({
-      next: (category: Category) => this._categories.set(this._categories().map((c: Category) => c.id === category.id ? category : c))
+      next: (category: Category) => this._categories.set(this._categories().map((c: Category) => c.id === category.id ? category : c)),
+      complete: () => this._category.set(null)
     }));
   }
 
@@ -43,5 +44,9 @@ export class CategoryStoreService {
     return this.categoryService.deleteCategory(id).pipe(tap({
       next: () => this._categories.set(this._categories().filter((category: Category) => category.id !== id))
     }));
+  }
+
+  clearCategory(): void {
+    this._category.set(null);
   }
 }
