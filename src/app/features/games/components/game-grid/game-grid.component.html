@@ -1,1 +1,15 @@
-<p>game-grid.component works!</p>
+@for (game of games(); track game.id) {
+<div class="game-card">
+    <header>
+        <h3 class="card-title">{{ game.title }}</h3>
+
+        <span>{{ game.groupPhase | groupPhase }}</span>
+    </header>
+
+    <section>
+        <span>{{ game.category.name }}</span>
+
+        <span class="game-date">{{ game.updateDate | date: 'd/M/yy' }}</span>
+    </section>
+</div>
+}
