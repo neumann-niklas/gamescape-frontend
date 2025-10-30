@@ -5,7 +5,7 @@ import { RolePipe } from '../../../../core/pipes/role-pipe';
 import { AuthStoreService } from '../../../../core/services/auth-store.service';
 
 @Component({
-  selector: 'app-user.page',
+  selector: 'app-user',
   imports: [RolePipe],
   templateUrl: './user.page.html',
   styleUrl: './user.page.scss'

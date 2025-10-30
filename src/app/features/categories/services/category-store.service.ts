@@ -42,7 +42,8 @@ export class CategoryStoreService {
 
   deleteCategory(id: string): Observable<Category> {
     return this.categoryService.deleteCategory(id).pipe(tap({
-      next: () => this._categories.set(this._categories().filter((category: Category) => category.id !== id))
+      next: () => this._categories.set(this._categories().filter((category: Category) => category.id !== id)),
+      complete: () => this._category.set(null)
     }));
   }
 

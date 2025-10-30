@@ -1,0 +1,10 @@
+@if (user()) {
+<button (click)="onOpenAddGameDialog()" type="button">
+    <span class="material-symbols-rounded">add</span>
+    <span>Spiel hinzufügen</span>
+</button>
+}
+
+@if (games(); as games) {
+{{games.length}}
+}
