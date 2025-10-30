@@ -12,6 +12,7 @@
     --button-color-secondary: black;
     --color: black;
     --input-background-color: hsl(0, 0%, 95%);
+    --tag-background-color-lightness: 90%;
 }
 
 .dark {
@@ -24,6 +25,7 @@
     --button-color-secondary: white;
     --color: white;
     --input-background-color: hsl(0, 0%, 5%);
+    --tag-background-color-lightness: 10%;
 }
 
 .material-symbols-rounded {

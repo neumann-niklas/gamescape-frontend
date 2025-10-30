@@ -3,7 +3,7 @@
     <header>
         <h3 class="card-title">{{ game.title }}</h3>
 
-        <span>{{ game.groupPhase | groupPhase }}</span>
+        <app-group-phase [groupPhase]="game.groupPhase"></app-group-phase>
     </header>
 
     <section>
