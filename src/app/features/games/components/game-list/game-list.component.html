@@ -1,1 +1,27 @@
-<p>game-list.component works!</p>
+<table>
+    <thead>
+        <tr>
+            <th>Titel</th>
+
+            <th>Gruppenphase</th>
+
+            <th>Kategorien</th>
+
+            <th>Datum</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @for (game of games(); track game.id) {
+        <tr>
+            <td>{{ game.title }}</td>
+
+            <td>{{ game.groupPhase | groupPhase}}</td>
+
+            <td>{{ game.category.name }}</td>
+
+            <td>{{ game.updateDate | date:'d/M/y' }}</td>
+        </tr>
+        }
+    </tbody>
+</table>

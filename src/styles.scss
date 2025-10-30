@@ -4,6 +4,7 @@
 :root,
 .light {
     --background-color: white;
+    --background-color-hover: hsl(0, 0%, 95%);
     --border-color: hsl(0, 0%, 80%);
     --button-background-color-primary: black;
     --button-background-color-secondary: hsl(0, 0%, 80%);
@@ -15,13 +16,14 @@
 
 .dark {
     --background-color: black;
+    --background-color-hover: hsl(0, 0%, 5%);
     --border-color: hsl(0, 0%, 20%);
     --button-background-color-primary: white;
     --button-background-color-secondary: hsl(0, 0%, 20%);
     --button-color-primary: black;
     --button-color-secondary: white;
     --color: white;
-    --input-background-color: hsl(0, 0%, 10%);
+    --input-background-color: hsl(0, 0%, 5%);
 }
 
 .material-symbols-rounded {
@@ -73,7 +75,8 @@ button[tertiary] {
     color: var(--color);
 }
 
-input {
+input,
+select {
     background-color: var(--input-background-color);
     border: 1px solid var(--border-color);
     border-radius: 4px;
