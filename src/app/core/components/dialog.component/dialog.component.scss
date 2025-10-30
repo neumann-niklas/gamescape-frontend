@@ -11,6 +11,7 @@
 }
 
 .dialog {
+    align-items: center;
     background-color: var(--background-color);
     border-radius: 4px;
     display: flex;
@@ -20,6 +21,7 @@
 
     header {
         display: flex;
+        gap: 1rem;
         justify-content: space-between;
 
         .title {

@@ -3,6 +3,11 @@ import { authenticationGuard } from './core/guards/authentication-guard';
 
 export const routes: Routes = [
     {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'games'
+    },
+    {
         path: 'categories',
         loadComponent: () => import('./features/categories/pages/categories/categories.page').then(m => m.CategoriesPage)
     },

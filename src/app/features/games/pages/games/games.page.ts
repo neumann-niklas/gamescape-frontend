@@ -25,6 +25,6 @@ export class GamesPage implements OnInit {
   }
 
   onOpenAddGameDialog(): void {
-    this.dialogStoreService.open(AddGameComponent);
+    this.dialogStoreService.open(AddGameComponent, 'Spielerstellung');
   }
 }
