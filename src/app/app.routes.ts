@@ -12,6 +12,10 @@ export const routes: Routes = [
         loadComponent: () => import('./features/categories/pages/categories/categories.page').then(m => m.CategoriesPage)
     },
     {
+        path: 'games/:id',
+        loadComponent: () => import('./features/games/pages/game/game.page').then(m => m.GamePage)
+    },
+    {
         path: 'games',
         loadComponent: () => import('./features/games/pages/games/games.page').then(m => m.GamesPage)
     },
