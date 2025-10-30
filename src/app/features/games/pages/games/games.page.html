@@ -1,10 +1,22 @@
-@if (user()) {
-<button (click)="onOpenAddGameDialog()" type="button">
-    <span class="material-symbols-rounded">add</span>
-    <span>Spiel hinzufügen</span>
-</button>
-}
+<header>
+    <button (click)="onToggleGamesView()" tertiary type="button">
+        @switch (gamesView()) { @case ('grid') {
+        <span class="material-symbols-rounded">grid_view</span>
+        } @case ('list') {
+        <span class="material-symbols-rounded">list</span>
+        }}
+    </button>
 
-@if (games(); as games) {
-{{games.length}}
-}
+    @if (user()) {
+    <button (click)="onOpenAddGameDialog()" type="button">
+        <span class="material-symbols-rounded">add</span>
+        <span>Spiel hinzufügen</span>
+    </button>
+    }
+</header>
+
+@switch (gamesView()) { @case ('grid') {
+<app-game-grid [games]="games()"></app-game-grid>
+} @case ('list') {
+<app-game-list [games]="games()"></app-game-list>
+}}

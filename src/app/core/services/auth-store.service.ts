@@ -35,8 +35,8 @@ export class AuthStoreService {
   signUp(signup: Signup): Observable<Auth> {
     return this.authService.signUp(signup).pipe(tap({
       next: (auth: Auth) => {
-        localStorage.setItem(ACCESS_TOKEN_KEY, auth.accessToken);
         this._auth.set(auth);
+        localStorage.setItem(ACCESS_TOKEN_KEY, auth.accessToken);
       },
       complete: () => this.getUser().subscribe()
     }));
@@ -45,8 +45,8 @@ export class AuthStoreService {
   logIn(login: Login): Observable<Auth> {
     return this.authService.logIn(login).pipe(tap({
       next: (auth: Auth) => {
-        localStorage.setItem(ACCESS_TOKEN_KEY, auth.accessToken);
         this._auth.set(auth);
+        localStorage.setItem(ACCESS_TOKEN_KEY, auth.accessToken);
       },
       complete: () => this.getUser().subscribe()
     }));
@@ -83,8 +83,8 @@ export class AuthStoreService {
   }
 
   logOut(): void {
-    localStorage.removeItem(ACCESS_TOKEN_KEY);
     this._auth.set(null);
     this._user.set(null);
+    localStorage.removeItem(ACCESS_TOKEN_KEY);
   }
 }
