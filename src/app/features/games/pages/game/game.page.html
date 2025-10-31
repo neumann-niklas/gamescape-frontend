@@ -1,1 +1,28 @@
-<p>game.page works!</p>
+@if (game(); as game) {
+<dl>
+    <dt>Titel</dt>
+    <dd>{{ game.title }}</dd>
+
+    <dt>Gruppenphase</dt>
+    <dd>
+        <app-group-phase [groupPhase]="game.groupPhase"></app-group-phase>
+    </dd>
+
+    <dt>Kategorie</dt>
+    <dd>{{ game.category.name }}</dd>
+</dl>
+
+@if (user(); as user) { @if (user.id === game.author.id) {
+<div class="game-actions">
+    <button (click)="onOpenUpdateGameDialog()" type="button">
+        <span class="material-symbols-rounded">edit</span>
+        <span>Bearbeiten</span>
+    </button>
+
+    <button (click)="onDeleteGame()" type="button">
+        <span class="material-symbols-rounded">delete</span>
+        <span>Löschen</span>
+    </button>
+</div>
+}}
+}

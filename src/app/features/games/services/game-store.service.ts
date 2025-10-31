@@ -46,4 +46,8 @@ export class GameStoreService {
       complete: () => this._game.set(null)
     }));
   }
+
+  clearGame(): void {
+    this._game.set(null);
+  }
 }
