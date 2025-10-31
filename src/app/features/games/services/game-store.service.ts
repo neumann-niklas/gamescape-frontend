@@ -35,8 +35,10 @@ export class GameStoreService {
 
   updateGame(id: string, updateGame: UpdateGame): Observable<Game> {
     return this.gameService.updateGame(id, updateGame).pipe(tap({
-      next: (game: Game) => this._games.set(this._games().map((g: Game) => g.id === game.id ? game : g)),
-      complete: () => this._game.set(null)
+      next: (game: Game) => {
+        this._games.set(this._games().map((g: Game) => g.id === game.id ? game : g));
+        this._game.set(game);
+      }
     }));
   }
 
