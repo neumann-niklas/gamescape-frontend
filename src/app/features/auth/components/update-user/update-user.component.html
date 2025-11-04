@@ -1,0 +1,25 @@
+@if (user(); as user) {
+<form [formGroup]="updateUserFormGroup" (submit)="onUpdateUser()">
+    <fieldset>
+        <div class="form-field">
+            <label for="firstName">Vorname</label>
+            <input autocomplete="given-name" formControlName="firstName" id="firstName" [placeholder]="user.firstName" type="text">
+        </div>
+
+        <div class="form-field">
+            <label for="lastName">Nachname</label>
+            <input autocomplete="family-name" formControlName="lastName" id="lastName" [placeholder]="user.lastName" type="text">
+        </div>
+    </fieldset>
+
+    <div class="form-actions">
+        <button (click)="updateUserFormGroup.reset()" secondary type="button">
+            <span class="material-symbols-rounded">undo</span>
+        </button>
+
+        <button [disabled]="!isUpdateUserValid" type="submit">
+            <span class="material-symbols-rounded">check</span>
+        </button>
+    </div>
+</form>
+}

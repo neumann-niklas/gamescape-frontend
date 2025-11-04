@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { User } from '../../../../core/models/user.model';
 import { RolePipe } from '../../../../core/pipes/role-pipe';
 import { AuthStoreService } from '../../../../core/services/auth-store.service';
+import { DialogStoreService } from '../../../../core/services/dialog-store.service';
+import { UpdateUserComponent } from '../../components/update-user/update-user.component';
 
 @Component({
   selector: 'app-user',
@@ -13,8 +15,13 @@ import { AuthStoreService } from '../../../../core/services/auth-store.service';
 export class UserPage {
   private readonly router: Router = inject<Router>(Router);
   private readonly authStoreService: AuthStoreService = inject<AuthStoreService>(AuthStoreService);
+  private readonly dialogStoreService: DialogStoreService = inject<DialogStoreService>(DialogStoreService);
 
   readonly user: Signal<User | null> = this.authStoreService.user;
+
+  onOpenUpdateUserDialog(): void {
+    this.dialogStoreService.open(UpdateUserComponent, 'Benutzerbearbeitung');
+  }
 
   onLogOut(): void {
     this.authStoreService.logOut();

@@ -22,7 +22,7 @@ export class UpdateGameComponent implements OnInit {
   readonly game: Signal<Game | null> = this.gameStoreService.game;
   readonly groupPhases: { key: string, value: string | GroupPhase }[] = groupPhases
 
-  updateGameFormGroup: FormGroup = new FormGroup({
+  readonly updateGameFormGroup: FormGroup = new FormGroup({
     title: new FormControl<string | null>(null),
     groupPhase: new FormControl<GroupPhase>(GroupPhase.Forming),
     category: new FormControl<Category | null>(null)
