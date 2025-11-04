@@ -1,5 +1,6 @@
 import { Component, inject, OnDestroy, OnInit, Signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CategoryComponent } from '../../../../core/components/category/category.component';
 import { GroupPhaseComponent } from '../../../../core/components/group-phase/group-phase.component';
 import { User } from '../../../../core/models/user.model';
 import { AuthStoreService } from '../../../../core/services/auth-store.service';
@@ -10,7 +11,7 @@ import { GameStoreService } from '../../services/game-store.service';
 
 @Component({
   selector: 'app-game',
-  imports: [GroupPhaseComponent],
+  imports: [CategoryComponent, GroupPhaseComponent],
   templateUrl: './game.page.html',
   styleUrl: './game.page.scss'
 })

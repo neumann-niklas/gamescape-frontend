@@ -20,7 +20,9 @@
                 <app-group-phase [groupPhase]="game.groupPhase"></app-group-phase>
             </td>
 
-            <td>{{ game.category.name }}</td>
+            <td>
+                <app-category [category]="game.category"></app-category>
+            </td>
 
             <td>{{ game.updateDate | date:'d/M/y' }}</td>
         </tr>

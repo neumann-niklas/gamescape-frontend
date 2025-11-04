@@ -7,7 +7,7 @@
     </header>
 
     <section>
-        <span>{{ game.category.name }}</span>
+        <app-category [category]="game.category"></app-category>
 
         <span class="game-date">{{ game.updateDate | date: 'd/M/yy' }}</span>
     </section>
