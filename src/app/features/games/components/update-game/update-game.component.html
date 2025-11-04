@@ -1,0 +1,38 @@
+@if (game(); as game) {
+<form [formGroup]="updateGameFormGroup" (submit)="onUpdateGame()">
+    <fieldset>
+        <div class="form-field">
+            <label for="title">Titel</label>
+            <input formControlName="title" id="title" [placeholder]="game.title" type="text">
+        </div>
+
+        <div class="form-field">
+            <label for="groupPhase">Gruppenphase</label>
+            <select formControlName="groupPhase" id="groupPhase">
+                @for (groupPhase of groupPhases; track groupPhase.value) {
+                <option [ngValue]="groupPhase.value">{{ groupPhase.key }}</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-field">
+            <label for="category">Kategorie</label>
+            <select formControlName="category" id="category">
+                @for (category of categories(); track category.id) {
+                <option [ngValue]="category">{{ category.name }}</option>
+                }
+            </select>
+        </div>
+    </fieldset>
+
+    <div class="form-actions">
+        <button (click)="onResetUpdateGameFormGroup()" secondary type="button">
+            <span class="material-symbols-rounded">undo</span>
+        </button>
+
+        <button [disabled]="!isUpdateGameValid" type="submit">
+            <span class="material-symbols-rounded">check</span>
+        </button>
+    </div>
+</form>
+}

@@ -1,0 +1,33 @@
+:host {
+    display: grid;
+    gap: .5rem;
+    grid-template-columns: auto auto auto auto;
+
+    .game-card {
+        border-radius: 4px;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+        padding: 1rem;
+
+        &:hover {
+            background-color: var(--background-color-hover);
+        }
+
+        header {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+
+            .card-title {
+                margin: 0;
+            }
+        }
+
+        section {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}

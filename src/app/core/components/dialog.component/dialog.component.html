@@ -1,0 +1,15 @@
+@if (component()) {
+<div class="overlay">
+    <div class="dialog">
+        <header>
+            <h2 class="title">{{ title() }}</h2>
+
+            <button (click)="onClose()" type="button">
+                <span class="material-symbols-rounded">close</span>
+            </button>
+        </header>
+
+        <ng-container #content></ng-container>
+    </div>
+</div>
+}

@@ -1,0 +1,27 @@
+table {
+    border-spacing: 0 .5rem;
+    width: 100%;
+
+    th,
+    td {
+        padding: 1rem;
+    }
+
+    th {
+        border-bottom: 1px solid var(--border-color);
+        text-align: start;
+    }
+
+    td:first-child {
+        border-radius: 4px 0 0 4px;
+    }
+
+    td:last-child {
+        border-radius: 0 4px 4px 0;
+    }
+
+    tbody tr:hover {
+        background-color: var(--background-color-hover);
+        cursor: pointer;
+    }
+}

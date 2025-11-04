@@ -1,0 +1,20 @@
+.category-table {
+    display: grid;
+
+    .table-row,
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr auto;
+
+        .table-cell {
+            align-items: center;
+            display: inline-flex;
+            gap: .5rem;
+            padding: .5rem;
+        }
+    }
+
+    .form-row input {
+        width: 100%;
+    }
+}

@@ -3,35 +3,33 @@
 
 :root,
 .light {
-    --background-color-primary: hsl(0, 0%, 96%);
-    --background-color-secondary: hsl(0, 0%, 100%);
-    --border-color-primary: hsl(0, 0%, 20%);
-    --border-color-secondary: hsl(0, 0%, 80%);
-    --button-color-primary: hsl(0, 0%, 0%);
-    --button-color-secondary: hsl(0, 0%, 100%);
-    --button-hover-color-primary: hsl(0, 0%, 25%);
-    --button-hover-color-secondary: hsl(0, 0%, 92%);
-    --color-primary: hsl(0, 0%, 0%);
-    --color-secondary: hsl(0, 0%, 100%);
+    --background-color: white;
+    --background-color-hover: hsl(0, 0%, 95%);
+    --border-color: hsl(0, 0%, 80%);
+    --button-background-color-primary: black;
+    --button-background-color-secondary: hsl(0, 0%, 80%);
+    --button-color-primary: white;
+    --button-color-secondary: black;
+    --color: black;
+    --input-background-color: hsl(0, 0%, 95%);
     --tag-background-color-lightness: 90%;
-    --tag-border-color-lightness: 80%;
-    --tag-color-lightness: 25%;
 }
 
 .dark {
-    --background-color-primary: hsl(0, 0%, 0%);
-    --background-color-secondary: hsl(0, 0%, 4%);
-    --border-color-primary: hsl(0, 0%, 80%);
-    --border-color-secondary: hsl(0, 0%, 20%);
-    --button-color-primary: hsl(0, 0%, 100%);
-    --button-color-secondary: hsl(0, 0%, 0%);
-    --button-hover-color-primary: hsl(0, 0%, 75%);
-    --button-hover-color-secondary: hsl(0, 0%, 8%);
-    --color-primary: hsl(0, 0%, 100%);
-    --color-secondary: hsl(0, 0%, 0%);
+    --background-color: black;
+    --background-color-hover: hsl(0, 0%, 5%);
+    --border-color: hsl(0, 0%, 20%);
+    --button-background-color-primary: white;
+    --button-background-color-secondary: hsl(0, 0%, 20%);
+    --button-color-primary: black;
+    --button-color-secondary: white;
+    --color: white;
+    --input-background-color: hsl(0, 0%, 5%);
     --tag-background-color-lightness: 10%;
-    --tag-border-color-lightness: 20%;
-    --tag-color-lightness: 75%;
+}
+
+.material-symbols-rounded {
+    font-size: 1rem;
 }
 
 body,
@@ -44,59 +42,46 @@ html {
 }
 
 body {
-    background-color: var(--background-color-primary);
-    color: var(--color-primary);
+    background-color: var(--background-color);
+    color: var(--color);
     margin: 0;
 }
 
 button {
     align-items: center;
-    background-color: var(--button-color-primary);
-    border: 1px solid var(--border-color-primary);
-    border-radius: .5em;
-    color: var(--color-secondary);
-    display: inline-flex;
-    gap: .25em;
-    height: fit-content;
+    background-color: var(--button-background-color-primary);
+    border: none;
+    border-radius: 4px;
+    color: var(--button-color-primary);
+    display: flex;
+    gap: .5rem;
     justify-content: center;
-    padding: .5em 1em;
+    padding: .5rem 1rem;
 
     &:disabled {
-        background-color: var(--border-color-secondary);
-        border: 1px solid var(--border-color-secondary);
+        opacity: 50%;
     }
 
     &:not(:disabled) {
         cursor: pointer;
-
-        &:hover {
-            background-color: var(--button-hover-color-primary);
-        }
     }
 }
 
 button[secondary] {
-    background-color: var(--background-color-secondary);
-    border: 1px solid var(--border-color-secondary);
-    color: var(--color-primary);
-
-    &:hover {
-        background-color: var(--button-hover-color-secondary);
-    }
+    background-color: var(--button-background-color-secondary);
+    color: var(--button-color-secondary);
 }
 
 button[tertiary] {
-    background-color: hsla(0, 0%, 100%, 0%);
-    border: 1px solid hsla(0, 0%, 100%, 0%);
-    color: var(--color-primary);
-
-    &:hover {
-        background-color: var(--button-hover-color-secondary);
-    }
+    background-color: var(--background-color);
+    color: var(--color);
 }
 
-input {
-    border: 1px solid var(--border-color-secondary);
-    border-radius: .5em;
-    padding: .5em;
+input,
+select {
+    background-color: var(--input-background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--color);
+    padding: .5rem;
 }

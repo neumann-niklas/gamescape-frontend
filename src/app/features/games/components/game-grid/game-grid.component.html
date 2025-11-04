@@ -1,0 +1,15 @@
+@for (game of games(); track game.id) {
+<div class="game-card" [routerLink]="game.id">
+    <header>
+        <h3 class="card-title">{{ game.title }}</h3>
+
+        <app-group-phase [groupPhase]="game.groupPhase"></app-group-phase>
+    </header>
+
+    <section>
+        <app-category [category]="game.category"></app-category>
+
+        <span class="game-date">{{ game.updateDate | date: 'd/M/yy' }}</span>
+    </section>
+</div>
+}

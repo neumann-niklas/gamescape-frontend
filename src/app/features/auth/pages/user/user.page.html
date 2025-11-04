@@ -1,0 +1,18 @@
+@if (user(); as user) {
+<dl>
+    <dt>Email</dt>
+    <dd>{{ user.email }}</dd>
+
+    <dt>Name</dt>
+    <dd>{{ user.firstName }} {{ user.lastName }}</dd>
+
+    <dt>Rolle</dt>
+    <dd>{{ user.role | role }}</dd>
+</dl>
+}
+
+<div class="user-actions">
+    <button (click)="onOpenUpdateUserDialog()" type="button">Bearbeiten</button>
+
+    <button (click)="onLogOut()" type="button">Abmelden</button>
+</div>

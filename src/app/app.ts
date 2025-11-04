@@ -1,42 +1,37 @@
-import { Component, Signal } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
-import { Role } from './auth/models/role.enum';
-import { User } from './auth/models/user.model';
-import { AuthStoreService } from './auth/services/auth-store.service';
-import { Theme } from './models/theme.enum';
-import { ThemeStoreService } from './services/theme-store.service';
+import { Component, inject, Signal } from '@angular/core';
+import { RouterLinkActive, RouterLinkWithHref, RouterOutlet } from '@angular/router';
+import { DialogComponent } from './core/components/dialog.component/dialog.component';
+import { Theme } from './core/models/theme.model';
+import { User } from './core/models/user.model';
+import { AuthStoreService } from './core/services/auth-store.service';
+import { DialogStoreService } from './core/services/dialog-store.service';
+import { ThemeStoreService } from './core/services/theme-store.service';
+import { LoginComponent } from './features/auth/components/login/login.component';
+import { SignupComponent } from './features/auth/components/signup/signup.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterLink, RouterOutlet],
+  imports: [RouterLinkActive, RouterLinkWithHref, RouterOutlet, DialogComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
 export class App {
-  readonly isAuthenticated: Signal<boolean>;
-  readonly user: Signal<User | null>;
+  private readonly authStoreService: AuthStoreService = inject<AuthStoreService>(AuthStoreService);
+  private readonly dialogStoreService: DialogStoreService = inject<DialogStoreService>(DialogStoreService);
+  private readonly themeStoreService: ThemeStoreService = inject<ThemeStoreService>(ThemeStoreService);
 
-  readonly theme: Signal<Theme>;
+  readonly user: Signal<User | null> = this.authStoreService.user;
+  readonly theme: Signal<Theme> = this.themeStoreService.theme;
 
-  constructor(
-    private readonly authStoreService: AuthStoreService,
-    private readonly themeService: ThemeStoreService
-  ) {
-    this.isAuthenticated = this.authStoreService.isAuthenticated;
-    this.user = this.authStoreService.user;
-
-    this.theme = this.themeService.theme;
+  onOpenLoginDialog(): void {
+    this.dialogStoreService.open(LoginComponent, 'Anmeldung');
   }
 
-  get isAdmin(): boolean {
-    return this.user()?.role === Role.Admin;
-  }
-
-  onLogOut(): void {
-    this.authStoreService.logOut();
+  onOpenSignupDialog(): void {
+    this.dialogStoreService.open(SignupComponent, 'Registrierung');
   }
 
   onToggleTheme(): void {
-    this.themeService.toggleTheme();
+    this.themeStoreService.toggleTheme();
   }
 }
