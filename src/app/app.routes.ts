@@ -8,6 +8,11 @@ export const routes: Routes = [
         redirectTo: 'games'
     },
     {
+        path: 'user',
+        loadComponent: () => import('./features/auth/pages/user/user.page').then(m => m.UserPage),
+        canActivate: [authenticationGuard]
+    },
+    {
         path: 'categories',
         loadComponent: () => import('./features/categories/pages/categories/categories.page').then(m => m.CategoriesPage)
     },
@@ -18,10 +23,5 @@ export const routes: Routes = [
     {
         path: 'games',
         loadComponent: () => import('./features/games/pages/games/games.page').then(m => m.GamesPage)
-    },
-    {
-        path: 'user',
-        loadComponent: () => import('./features/auth/pages/user/user.page').then(m => m.UserPage),
-        canActivate: [authenticationGuard]
     }
 ];
