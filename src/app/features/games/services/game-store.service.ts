@@ -1,6 +1,6 @@
 import { computed, inject, Injectable, Signal, signal, WritableSignal } from '@angular/core';
 import { Observable, tap } from 'rxjs';
-import { AddGame, Game, UpdateGame } from '../models/game.model';
+import { AddGame, Game, QueryGame, UpdateGame } from '../models/game.model';
 import { GameService } from './game.service';
 
 @Injectable({
@@ -21,8 +21,8 @@ export class GameStoreService {
     }));
   }
 
-  getGames(): Observable<Game[]> {
-    return this.gameService.getGames().pipe(tap({
+  getGames(queryGame?: QueryGame): Observable<Game[]> {
+    return this.gameService.getGames(queryGame).pipe(tap({
       next: (games: Game[]) => this._games.set(games)
     }));
   }

@@ -19,3 +19,11 @@ export interface AddGame {
 }
 
 export interface UpdateGame extends Partial<AddGame> { }
+
+export interface QueryGame {
+    readonly search?: string;
+    readonly groupPhase?: GroupPhase;
+    readonly categoryId?: string;
+    readonly sortBy?: 'title' | 'groupPhase' | 'updateDate';
+    readonly sortOrder?: 'ASC' | 'DESC';
+}
