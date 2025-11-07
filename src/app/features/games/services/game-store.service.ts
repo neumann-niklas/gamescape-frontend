@@ -1,6 +1,6 @@
-import { computed, inject, Injectable, Signal, signal, WritableSignal } from '@angular/core';
-import { Observable, tap } from 'rxjs';
-import { AddGame, Game, QueryGame, UpdateGame } from '../models/game.model';
+import { computed, effect, inject, Injectable, Signal, signal, WritableSignal } from '@angular/core';
+import { Observable, Subscription, tap } from 'rxjs';
+import { AddGame, Game, GameSort, QueryGame, UpdateGame } from '../models/game.model';
 import { GameService } from './game.service';
 
 @Injectable({
@@ -11,9 +11,19 @@ export class GameStoreService {
 
   private readonly _games: WritableSignal<Game[]> = signal<Game[]>([]);
   private readonly _game: WritableSignal<Game | null> = signal<Game | null>(null);
+  private readonly _queryGame: WritableSignal<QueryGame> = signal<QueryGame>({});
 
   readonly games: Signal<Game[]> = computed<Game[]>(() => this._games());
   readonly game: Signal<Game | null> = computed<Game | null>(() => this._game());
+  readonly queryGame: Signal<QueryGame> = computed<QueryGame>(() => this._queryGame());
+
+  constructor() {
+    effect((onCleanup) => {
+      const subscription: Subscription = this.getGames(this._queryGame()).subscribe();
+
+      onCleanup(() => subscription.unsubscribe());
+    });
+  }
 
   addGame(addGame: AddGame): Observable<Game> {
     return this.gameService.addGame(addGame).pipe(tap({
@@ -46,6 +56,18 @@ export class GameStoreService {
     return this.gameService.deleteGame(id).pipe(tap({
       next: () => this._games.set(this._games().filter((game: Game) => game.id !== id)),
       complete: () => this._game.set(null)
+    }));
+  }
+
+  updateQueryGame(queryGame: QueryGame): void {
+    this._queryGame.update((q: QueryGame) => ({ ...q, ...queryGame }));
+  }
+
+  toggleSort(sortBy: GameSort): void {
+    this._queryGame.update((queryGame: QueryGame) => ({
+      ...queryGame,
+      sortBy: sortBy,
+      sortOrder: queryGame.sortBy === sortBy && queryGame.sortOrder === 'ASC' ? 'DESC' : 'ASC'
     }));
   }
 

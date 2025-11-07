@@ -1,11 +1,51 @@
 <header>
-    <button (click)="onToggleGamesView()" tertiary type="button">
+    <button (click)="onToggleGamesView()" type="button">
         @switch (gamesView()) { @case ('grid') {
         <span class="material-symbols-rounded">grid_view</span>
         } @case ('list') {
         <span class="material-symbols-rounded">list</span>
         }}
     </button>
+
+    <!-- <div class="form-field">
+        <label for="search">
+            <span class="material-symbols-rounded">search</span>
+            <span>Suche</span>
+        </label>
+        <input type="search" id="search">
+    </div> -->
+
+    <div class="form-field">
+        <label for="groupPhase">Gruppenphase</label>
+        <select [formControl]="groupPhase" id="groupPhase" (change)="onFilterGroupPhase()">
+            <option [ngValue]="undefined">Alle</option>
+            @for (groupPhase of groupPhases; track groupPhase.key) {
+            <option [ngValue]="groupPhase.value">{{ groupPhase.key }}</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-field">
+        <label for="category">Kategorie</label>
+        <select [formControl]="category" id="category" (change)="onFilterCategory()">
+            <option [ngValue]="undefined">Alle</option>
+            @for (category of categories(); track category.id) {
+            <option [ngValue]="category.id">{{ category.name }}</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-field">
+        <label for="sortBy">
+            <span class="material-symbols-rounded">sort</span>
+            <span>Sortierung</span>
+        </label>
+        <select [formControl]="sortBy" id="sortBy" (change)="onToggleSort()">
+            <option value="title">Titel</option>
+            <option value="groupPhase">Gruppenphase</option>
+            <option value="updateDate">Datum</option>
+        </select>
+    </div>
 
     @if (user()) {
     <button (click)="onOpenAddGameDialog()" type="button">
