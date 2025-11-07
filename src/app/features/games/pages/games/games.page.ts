@@ -33,8 +33,8 @@ export class GamesPage implements OnInit {
 
   readonly groupPhases: { key: string, value: string | GroupPhase }[] = groupPhases;
 
-  readonly groupPhase: FormControl = new FormControl<GroupPhase | undefined>(undefined);
-  readonly category: FormControl = new FormControl<string | undefined>(undefined);
+  readonly groupPhase: FormControl<GroupPhase | null> = new FormControl<GroupPhase | null>(null);
+  readonly category: FormControl<string | null> = new FormControl<string | null>(null);
   readonly sortBy: FormControl = new FormControl<GameSort>('title');
 
   ngOnInit(): void {
@@ -47,11 +47,11 @@ export class GamesPage implements OnInit {
   }
 
   onFilterGroupPhase(): void {
-    this.gameStoreService.updateQueryGame({ groupPhase: this.groupPhase.value });
+    this.gameStoreService.updateQueryGame({ groupPhase: this.groupPhase.value ?? undefined });
   }
 
   onFilterCategory(): void {
-    this.gameStoreService.updateQueryGame({ categoryId: this.category.value });
+    this.gameStoreService.updateQueryGame({ categoryId: this.category.value ?? undefined });
   }
 
   onToggleSort(): void {

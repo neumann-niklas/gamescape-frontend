@@ -16,9 +16,12 @@
     </div> -->
 
     <div class="form-field">
-        <label for="groupPhase">Gruppenphase</label>
+        <label for="groupPhase">
+            <span class="material-symbols-rounded">groups</span>
+            <span>Gruppenphase</span>
+        </label>
         <select [formControl]="groupPhase" id="groupPhase" (change)="onFilterGroupPhase()">
-            <option [ngValue]="undefined">Alle</option>
+            <option [ngValue]="null">Alle</option>
             @for (groupPhase of groupPhases; track groupPhase.key) {
             <option [ngValue]="groupPhase.value">{{ groupPhase.key }}</option>
             }
@@ -26,9 +29,12 @@
     </div>
 
     <div class="form-field">
-        <label for="category">Kategorie</label>
+        <label for="category">
+            <span class="material-symbols-rounded">category</span>
+            <span>Kategorie</span>
+        </label>
         <select [formControl]="category" id="category" (change)="onFilterCategory()">
-            <option [ngValue]="undefined">Alle</option>
+            <option [ngValue]="null">Alle</option>
             @for (category of categories(); track category.id) {
             <option [ngValue]="category.id">{{ category.name }}</option>
             }
