@@ -19,3 +19,13 @@ export interface AddGame {
 }
 
 export interface UpdateGame extends Partial<AddGame> { }
+
+export type GameSort = 'title' | 'groupPhase' | 'updateDate';
+
+export interface QueryGame {
+    readonly search?: string;
+    readonly groupPhase?: GroupPhase;
+    readonly categoryId?: string;
+    readonly sortBy?: GameSort;
+    readonly sortOrder?: 'ASC' | 'DESC';
+}
