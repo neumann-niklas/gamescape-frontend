@@ -1,10 +1,9 @@
 <header>
     <button (click)="onToggleGamesView()" type="button">
-        @switch (gamesView()) { @case ('grid') {
-        <span class="material-symbols-rounded">grid_view</span>
-        } @case ('list') {
-        <span class="material-symbols-rounded">list</span>
-        }}
+        @switch (gamesView()) {
+        @case ('grid') { <span class="material-symbols-rounded">grid_view</span> }
+        @case ('list') { <span class="material-symbols-rounded">list</span> }
+        }
     </button>
 
     <!-- <div class="form-field">
@@ -20,7 +19,7 @@
             <span class="material-symbols-rounded">groups</span>
             <span>Gruppenphase</span>
         </label>
-        <select [formControl]="groupPhase" id="groupPhase" (change)="onFilterGroupPhase()">
+        <select [formControl]="groupPhase" id="groupPhase">
             <option [ngValue]="null">Alle</option>
             @for (groupPhase of groupPhases; track groupPhase.key) {
             <option [ngValue]="groupPhase.value">{{ groupPhase.key }}</option>
@@ -33,7 +32,7 @@
             <span class="material-symbols-rounded">category</span>
             <span>Kategorie</span>
         </label>
-        <select [formControl]="category" id="category" (change)="onFilterCategory()">
+        <select [formControl]="category" id="category">
             <option [ngValue]="null">Alle</option>
             @for (category of categories(); track category.id) {
             <option [ngValue]="category.id">{{ category.name }}</option>
@@ -61,8 +60,7 @@
     }
 </header>
 
-@switch (gamesView()) { @case ('grid') {
-<app-game-grid [games]="games()"></app-game-grid>
-} @case ('list') {
-<app-game-list [games]="games()"></app-game-list>
-}}
+@switch (gamesView()) {
+@case ('grid') { <app-game-grid [games]="games()"></app-game-grid> }
+@case ('list') { <app-game-list [games]="games()"></app-game-list> }
+}

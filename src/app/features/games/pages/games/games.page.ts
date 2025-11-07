@@ -40,18 +40,17 @@ export class GamesPage implements OnInit {
   ngOnInit(): void {
     this.categoryStoreService.getCategories().subscribe();
     this.gameStoreService.getGames().subscribe();
+
+    this.groupPhase.valueChanges.subscribe((groupPhase: GroupPhase | null) => {
+      this.gameStoreService.updateQueryGame({ groupPhase: groupPhase ?? undefined });
+    });
+    this.category.valueChanges.subscribe((categoryId: string | null) => {
+      this.gameStoreService.updateQueryGame({ categoryId: categoryId ?? undefined });
+    });
   }
 
   onToggleGamesView(): void {
     this.preferenceStoreService.toggleGamesView();
-  }
-
-  onFilterGroupPhase(): void {
-    this.gameStoreService.updateQueryGame({ groupPhase: this.groupPhase.value ?? undefined });
-  }
-
-  onFilterCategory(): void {
-    this.gameStoreService.updateQueryGame({ categoryId: this.category.value ?? undefined });
   }
 
   onToggleSort(): void {
