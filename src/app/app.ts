@@ -1,6 +1,6 @@
 import { Component, inject, Signal } from '@angular/core';
 import { RouterLinkActive, RouterLinkWithHref, RouterOutlet } from '@angular/router';
-import { DialogComponent } from './core/components/dialog.component/dialog.component';
+import { DialogComponent } from './core/components/dialog/dialog.component';
 import { Theme } from './core/models/theme.model';
 import { User } from './core/models/user.model';
 import { AuthStoreService } from './core/services/auth-store.service';
