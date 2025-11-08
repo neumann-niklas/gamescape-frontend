@@ -1,0 +1,40 @@
+.select {
+    display: inline-flex;
+    flex-direction: column;
+    gap: .5rem;
+
+    header {
+        align-items: center;
+        background-color: var(--input-background-color);
+        border-radius: 4px;
+        cursor: pointer;
+        display: flex;
+        padding: .5rem;
+
+        &:hover {
+            background-color: var(--input-hover-backgroud-color);
+        }
+
+        .select-label {
+            padding-inline: .5rem;
+        }
+    }
+
+    section {
+        background-color: var(--input-background-color);
+        border-radius: 4px;
+
+        .select-option {
+            align-items: center;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            padding: .5rem;
+
+            &:hover {
+                background-color: var(--input-hover-backgroud-color);
+            }
+        }
+    }
+}

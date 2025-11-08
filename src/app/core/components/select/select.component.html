@@ -1,0 +1,19 @@
+<div class="select">
+    <header (click)="isExpanded = !isExpanded">
+        @if (iconName()) { <span class="material-symbols-rounded">{{ iconName() }}</span> }
+        @if (selected()) { <span class="select-label">{{ selected() }}</span> }
+        @else if (label()) { <span class="select-label">{{ label() }}</span> }
+        <span class="material-symbols-rounded">{{ isExpanded ? 'expand_less' : 'expand_more' }}</span>
+    </header>
+
+    @if (isExpanded) {
+    <section>
+        @for (option of options(); track option) {
+        <div class="select-option" (click)="onSelect(option)">
+            <span class="option-label">{{ option }}</span>
+            @if (option === selected()) { <span class="material-symbols-rounded">check</span> }
+        </div>
+        }
+    </section>
+    }
+</div>
