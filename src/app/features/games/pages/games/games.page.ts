@@ -1,5 +1,6 @@
-import { Component, inject, OnInit, Signal } from '@angular/core';
+import { Component, effect, inject, OnInit, signal, Signal, WritableSignal } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { SelectComponent, SelectOption } from '../../../../core/components/select/select.component';
 import { User } from '../../../../core/models/user.model';
 import { AuthStoreService } from '../../../../core/services/auth-store.service';
 import { DialogStoreService } from '../../../../core/services/dialog-store.service';
@@ -15,7 +16,7 @@ import { GameStoreService } from '../../services/game-store.service';
 
 @Component({
   selector: 'app-games',
-  imports: [GameGridComponent, GameListComponent, ReactiveFormsModule],
+  imports: [ReactiveFormsModule, SelectComponent, GameGridComponent, GameListComponent],
   templateUrl: './games.page.html',
   styleUrl: './games.page.scss'
 })
@@ -31,26 +32,43 @@ export class GamesPage implements OnInit {
   readonly categories: Signal<Category[]> = this.categoryStoreService.categories;
   readonly games: Signal<Game[]> = this.gameStoreService.games;
 
-  readonly groupPhases: { key: string, value: string | GroupPhase }[] = groupPhases;
+  readonly groupPhases: SelectOption<GroupPhase>[] = groupPhases.map(groupPhase => ({
+    label: groupPhase.key, value: groupPhase.value as GroupPhase
+  }));
+  readonly categoryIds: WritableSignal<SelectOption[]> = signal<SelectOption[]>([]);
+  readonly gameSorts: SelectOption<GameSort>[] = [
+    { label: 'Titel', value: 'title' },
+    { label: 'Gruppenphase', value: 'groupPhase' },
+    { label: 'Datum', value: 'updateDate' }
+  ];
 
-  readonly groupPhase: FormControl<GroupPhase | null> = new FormControl<GroupPhase | null>(null);
-  readonly category: FormControl<string | null> = new FormControl<string | null>(null);
   readonly sortBy: FormControl = new FormControl<GameSort>('title');
+
+  constructor() {
+    effect(() => {
+      this.categoryIds.set(this.categories().map((category: Category) => ({ label: category.name, value: category.id })));
+    });
+  }
 
   ngOnInit(): void {
     this.categoryStoreService.getCategories().subscribe();
     this.gameStoreService.getGames().subscribe();
-
-    this.groupPhase.valueChanges.subscribe((groupPhase: GroupPhase | null) => {
-      this.gameStoreService.updateQueryGame({ groupPhase: groupPhase ?? undefined });
-    });
-    this.category.valueChanges.subscribe((categoryId: string | null) => {
-      this.gameStoreService.updateQueryGame({ categoryId: categoryId ?? undefined });
-    });
   }
 
   onToggleGamesView(): void {
     this.preferenceStoreService.toggleGamesView();
+  }
+
+  onQueryGroupPhase(selected: SelectOption<GroupPhase> | null): void {
+    this.gameStoreService.updateQueryGame({ groupPhase: selected?.value ?? undefined });
+  }
+
+  onQueryCategory(selected: SelectOption | null): void {
+    this.gameStoreService.updateQueryGame({ categoryId: selected?.value ?? undefined });
+  }
+
+  onQuerySortBy(selected: SelectOption<GameSort> | null): void {
+    this.gameStoreService.updateQueryGame({ sortBy: selected?.value ?? undefined });
   }
 
   onToggleSort(): void {

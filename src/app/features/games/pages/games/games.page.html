@@ -14,43 +14,11 @@
         <input type="search" id="search">
     </div> -->
 
-    <div class="form-field">
-        <label for="groupPhase">
-            <span class="material-symbols-rounded">groups</span>
-            <span>Gruppenphase</span>
-        </label>
-        <select [formControl]="groupPhase" id="groupPhase">
-            <option [ngValue]="null">Alle</option>
-            @for (groupPhase of groupPhases; track groupPhase.key) {
-            <option [ngValue]="groupPhase.value">{{ groupPhase.key }}</option>
-            }
-        </select>
-    </div>
+    <app-select iconName="groups" label="Gruppenphase" [options]="groupPhases" (selectedChange)="onQueryGroupPhase($event)"></app-select>
 
-    <div class="form-field">
-        <label for="category">
-            <span class="material-symbols-rounded">category</span>
-            <span>Kategorie</span>
-        </label>
-        <select [formControl]="category" id="category">
-            <option [ngValue]="null">Alle</option>
-            @for (category of categories(); track category.id) {
-            <option [ngValue]="category.id">{{ category.name }}</option>
-            }
-        </select>
-    </div>
+    <app-select iconName="category" label="Kategorie" [options]="categoryIds()" (selectedChange)="onQueryCategory($event)"></app-select>
 
-    <div class="form-field">
-        <label for="sortBy">
-            <span class="material-symbols-rounded">sort</span>
-            <span>Sortierung</span>
-        </label>
-        <select [formControl]="sortBy" id="sortBy" (change)="onToggleSort()">
-            <option value="title">Titel</option>
-            <option value="groupPhase">Gruppenphase</option>
-            <option value="updateDate">Datum</option>
-        </select>
-    </div>
+    <app-select iconName="sort" label="Sortierung" [options]="gameSorts" (selectedChange)="onQuerySortBy($event)"></app-select>
 
     @if (user()) {
     <button (click)="onOpenAddGameDialog()" type="button">

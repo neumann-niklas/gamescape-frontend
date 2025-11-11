@@ -1,7 +1,6 @@
 import { Component, inject, Signal } from '@angular/core';
 import { RouterLinkActive, RouterLinkWithHref, RouterOutlet } from '@angular/router';
 import { DialogComponent } from './core/components/dialog/dialog.component';
-import { SelectComponent } from './core/components/select/select.component';
 import { Theme } from './core/models/theme.model';
 import { User } from './core/models/user.model';
 import { AuthStoreService } from './core/services/auth-store.service';
@@ -12,7 +11,7 @@ import { SignupComponent } from './features/auth/components/signup/signup.compon
 
 @Component({
   selector: 'app-root',
-  imports: [RouterLinkActive, RouterLinkWithHref, RouterOutlet, DialogComponent, SelectComponent],
+  imports: [RouterLinkActive, RouterLinkWithHref, RouterOutlet, DialogComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
